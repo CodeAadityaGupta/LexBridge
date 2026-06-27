@@ -5,3 +5,5 @@
 *.pyc
 *lexbridge-frontend-guide.md
 *lexbridge-backend-guide.md
+*node_modules/
+*server.log

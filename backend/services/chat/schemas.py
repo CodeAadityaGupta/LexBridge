@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, AliasChoices
 
 
 class ConversationTurn(BaseModel):
-    role: str      # "user" or "assistant"
-    content: str
+    role: str = Field(validation_alias=AliasChoices('role', 'sender'))
+    content: str = Field(validation_alias=AliasChoices('content', 'text'))
 
 
 class ChatRequest(BaseModel):

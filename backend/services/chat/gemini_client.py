@@ -13,7 +13,7 @@ from services.chat.rag.retriever import retrieve
 # history is passed in per-request as a list of LangChain message objects.
 # ---------------------------------------------------------------------------
 _llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     google_api_key=settings.gemini_api_key,
     temperature=0.3,       # low temperature for factual legal responses
     max_output_tokens=1024,
