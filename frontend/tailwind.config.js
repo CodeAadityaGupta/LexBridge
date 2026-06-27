@@ -28,9 +28,15 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       borderRadius: {
-        DEFAULT: '6px',
-        md: '12px',
+        DEFAULT: '8px',
+        md: '16px',
         lg: '20px',
+        xl: '24px',
+      },
+      boxShadow: {
+        card: 'var(--shadow-card)',
+        modal: 'var(--shadow-modal)',
+        focus: 'var(--shadow-focus)',
       },
     },
   },

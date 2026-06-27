@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Shield, ChevronDown, ChevronUp, Lock, Bot, FileText, User, 
@@ -27,10 +27,23 @@ const SECTIONS = [
 
 export default function Privacy() {
   const [activeFaq, setActiveFaq] = useState(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
+
+  useEffect(() => {
+    const handleScrollProgress = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        const progress = (window.scrollY / totalScroll) * 100;
+        setScrollProgress(progress);
+      }
+    };
+    window.addEventListener('scroll', handleScrollProgress);
+    return () => window.removeEventListener('scroll', handleScrollProgress);
+  }, []);
 
   const handleScroll = (id) => {
     const element = document.getElementById(id);
@@ -64,41 +77,54 @@ export default function Privacy() {
   ];
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col font-sans page-fade">
+    <div className="min-h-screen bg-surface flex flex-col font-sans page-fade relative overflow-hidden">
+      
+      {/* Mesh gradients for depth */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-30%] left-[-25%] w-[80%] h-[80%] rounded-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0,transparent_60%)] filter blur-3xl" />
+        <div className="absolute top-16 left-0 right-0 h-48 bg-gradient-to-b from-accent/5 to-transparent border-b border-border/40" />
+      </div>
+
       <LandingNavbar />
 
+      {/* Reading Progress Indicator */}
+      <div 
+        className="fixed top-[70px] md:top-[72px] left-0 h-[2.5px] bg-accent z-40 transition-all duration-75"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
       {/* Hero Header */}
-      <header className="pt-28 pb-12 px-6 text-center max-w-4xl mx-auto space-y-4">
-        <div className="inline-flex p-3 bg-accent-light text-accent rounded-full animate-scaleUp">
-          <Shield className="w-8 h-8" />
+      <header className="pt-36 pb-14 px-6 text-center max-w-4xl mx-auto space-y-4 z-10 relative">
+        <div className="inline-flex p-3 bg-accent-light text-accent rounded-full animate-scaleUp border border-accent/10 shadow-sm">
+          <Shield className="w-6 h-6" />
         </div>
-        <h1 className="font-serif text-3xl md:text-4xl font-bold text-ink">
+        <h1 className="font-serif text-4xl md:text-5xl font-bold text-ink">
           Privacy Policy
         </h1>
-        <p className="text-muted text-xs md:text-sm max-w-md mx-auto">
-          We are committed to protecting your personal and legal information.
+        <p className="text-muted text-xs md:text-sm max-w-md mx-auto leading-relaxed">
+          How we handle, secure, and manage legal case contexts and credentials inside LexBridge.
         </p>
-        <div className="text-[10px] text-muted font-mono">
+        <div className="text-[10px] text-muted font-bold tracking-widest uppercase font-sans select-none">
           Last Updated: June 2026
         </div>
       </header>
 
       {/* Content Layout */}
-      <div className="max-w-5xl mx-auto w-full px-6 pb-20 flex flex-col md:flex-row items-start gap-8 relative">
+      <div className="max-w-5xl mx-auto w-full px-6 pb-24 flex flex-col md:flex-row items-start gap-10 relative z-10">
         
         {/* Sticky Sidebar Navigation (Desktop only) */}
-        <aside className="hidden md:block w-[240px] shrink-0 sticky top-24 self-start bg-card border border-border p-4 rounded-md shadow-card">
-          <h4 className="text-[10px] font-bold uppercase tracking-wider text-muted mb-3">
-            Navigation
+        <aside className="hidden md:block w-[240px] shrink-0 sticky top-24 self-start bg-card border border-border/60 p-5 rounded-2xl shadow-card">
+          <h4 className="text-[9px] font-bold uppercase tracking-widest text-muted mb-3 select-none">
+            Documentation Sections
           </h4>
-          <nav className="space-y-1">
+          <nav className="space-y-0.5">
             {SECTIONS.map((sec) => {
               const IconComponent = sec.icon;
               return (
                 <button
                   key={sec.id}
                   onClick={() => handleScroll(sec.id)}
-                  className="w-full text-left px-2.5 py-1.5 text-xs text-muted hover:text-accent hover:bg-accent-light rounded font-sans transition-colors flex items-center space-x-2"
+                  className="w-full text-left px-3 py-2 text-xs text-muted hover:text-accent hover:bg-accent-light rounded-md font-sans font-semibold transition-colors flex items-center space-x-2.5"
                 >
                   <IconComponent className="w-3.5 h-3.5 text-muted/70 shrink-0" />
                   <span className="truncate">{sec.label}</span>
@@ -109,11 +135,11 @@ export default function Privacy() {
         </aside>
 
         {/* Main Content Pane */}
-        <main className="flex-1 space-y-6 w-full">
+        <main className="flex-1 space-y-8 w-full max-w-2xl">
           
           {/* Welcome Card */}
-          <Card id="welcome" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="welcome" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <BookOpen className="w-5 h-5 text-accent shrink-0" /> Welcome
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-3 font-sans">
@@ -130,8 +156,8 @@ export default function Privacy() {
           </Card>
 
           {/* Information We Collect Card */}
-          <Card id="collection" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="collection" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <FolderOpen className="w-5 h-5 text-accent shrink-0" /> Information We Collect
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-4 font-sans">
@@ -139,9 +165,9 @@ export default function Privacy() {
                 Depending on how you use our platform, we may collect the following information:
               </p>
               
-              <div className="space-y-2">
-                <h3 className="font-semibold text-ink flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-accent" /> Personal Information
+              <div className="space-y-2.5">
+                <h3 className="font-bold text-ink flex items-center gap-1.5 text-xs">
+                  <User className="w-4 h-4 text-accent" /> Personal Information
                 </h3>
                 <ul className="list-disc pl-5 space-y-1">
                   <li>Full Name</li>
@@ -151,27 +177,27 @@ export default function Privacy() {
                 </ul>
               </div>
 
-              <div className="space-y-2">
-                <h3 className="font-semibold text-ink flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5 text-accent" /> Legal Information
+              <div className="space-y-2.5">
+                <h3 className="font-bold text-ink flex items-center gap-1.5 text-xs">
+                  <FileText className="w-4 h-4 text-accent" /> Legal Information
                 </h3>
                 <p>Users may voluntarily upload legal documents such as:</p>
-                <div className="grid grid-cols-2 gap-2 max-w-sm pt-1">
-                  <span className="bg-surface px-2 py-1 rounded text-[10px] font-mono">FIRs</span>
-                  <span className="bg-surface px-2 py-1 rounded text-[10px] font-mono">Contracts</span>
-                  <span className="bg-surface px-2 py-1 rounded text-[10px] font-mono">Property Documents</span>
-                  <span className="bg-surface px-2 py-1 rounded text-[10px] font-mono">Court Notices</span>
-                  <span className="bg-surface px-2 py-1 rounded text-[10px] font-mono">Affidavits</span>
-                  <span className="bg-surface px-2 py-1 rounded text-[10px] font-mono">Agreements</span>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1 select-none">
+                  <span className="bg-surface border border-border/75 px-2.5 py-1.5 rounded-md text-[10px] font-mono text-ink text-center">FIRs</span>
+                  <span className="bg-surface border border-border/75 px-2.5 py-1.5 rounded-md text-[10px] font-mono text-ink text-center">Contracts</span>
+                  <span className="bg-surface border border-border/75 px-2.5 py-1.5 rounded-md text-[10px] font-mono text-ink text-center">Property Docs</span>
+                  <span className="bg-surface border border-border/75 px-2.5 py-1.5 rounded-md text-[10px] font-mono text-ink text-center">Court Notices</span>
+                  <span className="bg-surface border border-border/75 px-2.5 py-1.5 rounded-md text-[10px] font-mono text-ink text-center">Affidavits</span>
+                  <span className="bg-surface border border-border/75 px-2.5 py-1.5 rounded-md text-[10px] font-mono text-ink text-center">Agreements</span>
                 </div>
                 <p className="italic pt-1 text-[11px]">
                   These documents are processed only to provide requested platform features.
                 </p>
               </div>
 
-              <div className="space-y-2">
-                <h3 className="font-semibold text-ink flex items-center gap-1.5">
-                  <Lock className="w-3.5 h-3.5 text-accent" /> Usage Information
+              <div className="space-y-2.5">
+                <h3 className="font-bold text-ink flex items-center gap-1.5 text-xs">
+                  <Lock className="w-4 h-4 text-accent" /> Usage Information
                 </h3>
                 <ul className="list-disc pl-5 space-y-1">
                   <li>Browser information, operating system, and device type</li>
@@ -183,8 +209,8 @@ export default function Privacy() {
           </Card>
 
           {/* How We Use Your Information Card */}
-          <Card id="usage" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="usage" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <RefreshCw className="w-5 h-5 text-accent shrink-0" /> How We Use Your Information
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-3 font-sans">
@@ -197,15 +223,15 @@ export default function Privacy() {
                 <li>Provide personalized legal guidance</li>
                 <li>Improve platform security and detect fraudulent activity</li>
               </ul>
-              <div className="mt-2 p-3 bg-success/5 border border-success/15 rounded text-success text-[11px] font-medium">
-                We do <strong>not</strong> sell your personal information.
+              <div className="mt-2 p-3 bg-success/5 border border-success/15 rounded-md text-success text-[11px] font-bold">
+                We do not sell your personal information.
               </div>
             </div>
           </Card>
 
           {/* AI-Powered Features Card */}
-          <Card id="ai" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="ai" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Bot className="w-5 h-5 text-accent shrink-0" /> AI-Powered Features
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-3 font-sans">
@@ -216,9 +242,9 @@ export default function Privacy() {
                 <li>Organizing uploaded evidence and case materials</li>
                 <li>Recommending relevant legal categories</li>
               </ul>
-              <div className="p-3.5 bg-warning/5 border border-warning/15 rounded text-warning space-y-1 text-[11px] font-sans">
+              <div className="p-4 bg-warning/5 border border-warning/15 rounded-md text-warning space-y-1.5 text-[11px]">
                 <span className="font-bold uppercase tracking-wider text-[10px] block">Important Notice</span>
-                <p>
+                <p className="leading-relaxed">
                   AI-generated responses are intended for informational purposes only and should not be considered legal advice. Users are encouraged to consult a qualified advocate before making legal decisions.
                 </p>
               </div>
@@ -226,8 +252,8 @@ export default function Privacy() {
           </Card>
 
           {/* Document Security Card */}
-          <Card id="security" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="security" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Lock className="w-5 h-5 text-accent shrink-0" /> Document Security
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-3 font-sans">
@@ -244,8 +270,8 @@ export default function Privacy() {
           </Card>
 
           {/* Sharing Your Information Card */}
-          <Card id="sharing" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="sharing" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Users className="w-5 h-5 text-accent shrink-0" /> Sharing Your Information
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-3 font-sans">
@@ -260,8 +286,8 @@ export default function Privacy() {
           </Card>
 
           {/* Data Retention Card */}
-          <Card id="retention" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="retention" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Clock className="w-5 h-5 text-accent shrink-0" /> Data Retention
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-2 font-sans">
@@ -275,8 +301,8 @@ export default function Privacy() {
           </Card>
 
           {/* Your Rights Card */}
-          <Card id="rights" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="rights" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Scale className="w-5 h-5 text-accent shrink-0" /> Your Rights
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-2 font-sans">
@@ -292,8 +318,8 @@ export default function Privacy() {
           </Card>
 
           {/* Cookies Card */}
-          <Card id="cookies" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="cookies" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Cookie className="w-5 h-5 text-accent shrink-0" /> Cookies
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-2 font-sans">
@@ -308,8 +334,8 @@ export default function Privacy() {
           </Card>
 
           {/* Third-Party Services Card */}
-          <Card id="thirdparty" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="thirdparty" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Settings className="w-5 h-5 text-accent shrink-0" /> Third-Party Services
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-2 font-sans">
@@ -325,8 +351,8 @@ export default function Privacy() {
           </Card>
 
           {/* Children's Privacy Card */}
-          <Card id="children" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="children" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Heart className="w-5 h-5 text-accent shrink-0" /> Children's Privacy
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-2 font-sans">
@@ -340,8 +366,8 @@ export default function Privacy() {
           </Card>
 
           {/* Changes to This Privacy Policy Card */}
-          <Card id="changes" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="changes" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <History className="w-5 h-5 text-accent shrink-0" /> Changes to This Privacy Policy
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-2 font-sans">
@@ -355,14 +381,14 @@ export default function Privacy() {
           </Card>
 
           {/* Contact Us Card */}
-          <Card id="contact" className="scroll-mt-24 p-6 md:p-8 space-y-4">
-            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border pb-3">
+          <Card id="contact" className="scroll-mt-24 !p-7 md:!p-8 space-y-4 border-border/60 bg-card">
+            <h2 className="font-serif text-lg font-bold text-ink flex items-center gap-2.5 border-b border-border/50 pb-3.5">
               <Mail className="w-5 h-5 text-accent shrink-0" /> Contact Us
             </h2>
             <div className="text-xs text-muted leading-relaxed space-y-3 font-sans">
               <p>For any questions regarding this Privacy Policy, please contact:</p>
               <div className="p-4 bg-surface border border-border rounded-md space-y-1.5 max-w-sm">
-                <span className="font-bold text-ink text-xs block">LexBridge Team</span>
+                <span className="font-bold text-ink text-xs block font-sans">LexBridge Team</span>
                 <a 
                   href="mailto:support@lexbridge.com" 
                   className="inline-flex items-center space-x-1.5 text-accent hover:underline font-mono text-[11px]"
@@ -375,21 +401,21 @@ export default function Privacy() {
           </Card>
 
           {/* Expandable FAQs Accordion */}
-          <section className="space-y-4 pt-6">
-            <h3 className="font-serif text-lg font-bold text-ink">
+          <section className="space-y-4 pt-6 select-none">
+            <h3 className="font-serif text-xl font-bold text-ink">
               Frequently Asked Questions
             </h3>
             
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {faqs.map((faq, index) => {
                 const isOpen = activeFaq === index;
                 return (
-                  <Card key={index} className="overflow-hidden border border-border">
+                  <Card key={index} className="overflow-hidden border border-border/60 !p-0 bg-card">
                     <button
                       onClick={() => toggleFaq(index)}
                       className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none transition-colors hover:bg-surface"
                     >
-                      <span className="text-xs md:text-sm font-semibold text-ink font-sans">
+                      <span className="text-xs md:text-sm font-bold text-ink font-sans">
                         {faq.q}
                       </span>
                       {isOpen ? (
@@ -400,8 +426,8 @@ export default function Privacy() {
                     </button>
 
                     {isOpen && (
-                      <div className="px-6 pb-4 pt-1 border-t border-border/10">
-                        <p className="text-xs text-muted leading-relaxed font-sans">
+                      <div className="px-6 pb-5 pt-1 border-t border-border/40">
+                        <p className="text-xs text-muted leading-relaxed font-sans font-medium">
                           {faq.a}
                         </p>
                       </div>
@@ -413,9 +439,9 @@ export default function Privacy() {
           </section>
 
           {/* Consent Alert Box Footer */}
-          <Card id="consent" className="scroll-mt-24 p-5 bg-accent-light/40 border border-accent/15 rounded shadow-sm text-center">
-            <p className="text-xs font-medium text-ink font-sans">
-              By using LexBridge, you agree to this <span className="font-bold text-accent">Privacy Policy</span>.
+          <Card id="consent" className="scroll-mt-24 p-5 bg-accent-light/35 border border-accent/10 rounded-2xl shadow-sm text-center">
+            <p className="text-xs font-bold text-ink font-sans">
+              By establishing case parameters on LexBridge, you agree to this <span className="text-accent underline decoration-accent/15 underline-offset-2">Privacy Policy</span>.
             </p>
           </Card>
 
@@ -423,15 +449,15 @@ export default function Privacy() {
       </div>
 
       {/* Public Footer */}
-      <footer className="mt-auto py-8 px-6 bg-ink text-[#a5abbf] border-t border-border/10 text-center text-xs">
+      <footer className="mt-auto py-10 px-6 bg-ink text-[#a5abbf] border-t border-border/10 text-center text-xs z-10 relative">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-2 text-white">
-            <span className="font-semibold text-sm tracking-tight">LexBridge</span>
+            <span className="font-semibold text-sm tracking-wider uppercase font-sans">LexBridge</span>
             <Scale className="w-4 h-4 text-accent-light shrink-0" />
           </div>
-          <div>© 2026 LexBridge. All rights reserved.</div>
+          <div className="font-sans font-semibold">© 2026 LexBridge. All rights reserved.</div>
           <div>
-            <Link to="/" className="hover:text-white hover:underline">
+            <Link to="/" className="hover:text-white hover:underline font-sans font-semibold">
               Back to Home
             </Link>
           </div>
