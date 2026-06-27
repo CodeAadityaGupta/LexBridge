@@ -76,7 +76,7 @@ export default function Landing() {
   ];
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col font-sans">
+    <div className="min-h-screen bg-surface flex flex-col font-sans page-fade">
       <LandingNavbar />
 
       {/* Hero Section */}

@@ -1,56 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
+import { Search, X } from 'lucide-react';
+import { lawyerService } from '../../services/lawyerService';
 import LawyerCard from './LawyerCard';
-import Input from '../UI/input';
-
-// Static lawyers for Step 6 (mock data first)
-const MOCK_LAWYERS = [
-  {
-    id: '1',
-    name: 'Rohan Sharma',
-    specialty: 'Criminal Defence',
-    rating: '4.8',
-    fee: '₹1,500',
-    experience: 12,
-    avatar: '',
-  },
-  {
-    id: '2',
-    name: 'Priya Menon',
-    specialty: 'Property Disputes',
-    rating: '4.9',
-    fee: '₹2,000',
-    experience: 15,
-    avatar: '',
-  },
-  {
-    id: '3',
-    name: 'Amit Patel',
-    specialty: 'Family Law',
-    rating: '4.7',
-    fee: '₹1,200',
-    experience: 8,
-    avatar: '',
-  },
-  {
-    id: '4',
-    name: 'Siddharth Sen',
-    specialty: 'Labour Law',
-    rating: '4.8',
-    fee: '₹1,800',
-    experience: 10,
-    avatar: '',
-  },
-  {
-    id: '5',
-    name: 'Anjali Deshmukh',
-    specialty: 'Corporate Law',
-    rating: '4.9',
-    fee: '₹3,000',
-    experience: 14,
-    avatar: '',
-  },
-];
+import Spinner from '../UI/spinner';
 
 const SPECIALTIES = [
   'All Specialties',
@@ -61,14 +13,32 @@ const SPECIALTIES = [
   'Corporate Law',
 ];
 
-export default function LawyerSidebar() {
-  const [lawyers, setLawyers] = useState(MOCK_LAWYERS);
+export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
+  const [allLawyers, setAllLawyers] = useState([]);
+  const [filteredLawyers, setFilteredLawyers] = useState([]);
   const [search, setSearch] = useState('');
   const [specialty, setSpecialty] = useState('All Specialties');
+  const [loading, setLoading] = useState(true);
 
-  // Client-side search and filter logic
+  // Fetch lawyers on mount
   useEffect(() => {
-    let filtered = MOCK_LAWYERS;
+    const fetchLawyers = async () => {
+      try {
+        const data = await lawyerService.getLawyers();
+        setAllLawyers(data);
+        setFilteredLawyers(data);
+      } catch (err) {
+        console.error("Failed to load lawyers in sidebar:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLawyers();
+  }, []);
+
+  // Filter search logic
+  useEffect(() => {
+    let filtered = allLawyers;
 
     if (search.trim() !== '') {
       const term = search.toLowerCase();
@@ -83,16 +53,35 @@ export default function LawyerSidebar() {
       filtered = filtered.filter((l) => l.specialty === specialty);
     }
 
-    setLawyers(filtered);
-  }, [search, specialty]);
+    setFilteredLawyers(filtered);
+  }, [search, specialty, allLawyers]);
 
   return (
-    <aside className="w-full md:w-[320px] bg-card border-t md:border-t-0 md:border-l border-border flex flex-col h-full shrink-0">
+    <aside 
+      className={`bg-card flex flex-col h-full shrink-0
+        ${isMobileDrawer 
+          ? 'w-full' 
+          : 'hidden md:flex md:w-[260px] lg:w-[320px] md:border-l border-border'
+        }
+      `}
+    >
       {/* Search & Filter Header */}
       <div className="p-4 border-b border-border space-y-3">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted font-sans">
-          Advocate Directory
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted font-sans">
+            Advocate Directory
+          </h3>
+          {/* Close button for mobile drawers */}
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="p-1 rounded-full text-muted hover:bg-accent-light hover:text-accent transition-colors md:hidden outline-none"
+              aria-label="Close sidebar directory"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
 
         {/* Search */}
         <div className="relative">
@@ -106,7 +95,7 @@ export default function LawyerSidebar() {
           />
         </div>
 
-        {/* Specialty Select Dropdown */}
+        {/* Specialty Dropdown */}
         <div className="relative">
           <select
             value={specialty}
@@ -119,7 +108,6 @@ export default function LawyerSidebar() {
               </option>
             ))}
           </select>
-          {/* Custom Select Arrow Icon */}
           <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -128,10 +116,15 @@ export default function LawyerSidebar() {
         </div>
       </div>
 
-      {/* Lawyers Catalog Scroll Area */}
+      {/* Directory Scroll Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {lawyers.length > 0 ? (
-          lawyers.map((lawyer) => (
+        {loading ? (
+          <div className="py-12 flex flex-col items-center justify-center space-y-2">
+            <Spinner size="md" />
+            <span className="text-xs text-muted font-sans">Loading advocates...</span>
+          </div>
+        ) : filteredLawyers.length > 0 ? (
+          filteredLawyers.map((lawyer) => (
             <LawyerCard key={lawyer.id} lawyer={lawyer} />
           ))
         ) : (

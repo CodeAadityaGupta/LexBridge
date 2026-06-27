@@ -59,7 +59,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex bg-surface font-sans">
+    <div className="min-h-screen flex bg-surface font-sans page-fade">
       {/* Left Panel: Form */}
       <div className="flex-1 flex flex-col justify-center items-center px-6 py-12 lg:px-8">
         <div className="w-full max-w-[360px] space-y-8 bg-card border border-border p-8 rounded-md shadow-card">
