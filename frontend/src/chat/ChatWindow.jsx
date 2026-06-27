@@ -6,7 +6,7 @@ import MessageBubble from './MessageBubble';
 import TypingIndicator from './TypingIndicator';
 import Button from '../UI/Button';
 
-export default function ChatWindow() {
+export default function ChatWindow({ onToggleSidebar }) {
   const { messages, loading, addMessage, setLoading } = useChatStore();
   const [inputText, setInputText] = useState('');
   const messagesEndRef = useRef(null);

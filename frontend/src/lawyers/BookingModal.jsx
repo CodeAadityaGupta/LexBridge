@@ -7,7 +7,7 @@ import Input from '../UI/input';
 import Button from '../UI/Button';
 import Spinner from '../UI/spinner';
 
-export default function BookingModal({ isOpen, onClose, lawyerName, specialty }) {
+export default function BookingModal({ isOpen, onClose, lawyerName, specialty, lawyerId }) {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -98,6 +98,7 @@ export default function BookingModal({ isOpen, onClose, lawyerName, specialty })
     setApiError('');
 
     const bookingData = {
+      lawyerId,
       lawyerName,
       name,
       email,

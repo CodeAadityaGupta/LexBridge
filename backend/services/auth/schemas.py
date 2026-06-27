@@ -1,10 +1,10 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field, AliasChoices
 
 
 class SignupRequest(BaseModel):
     email: EmailStr
     password: str
-    full_name: str
+    full_name: str = Field(validation_alias=AliasChoices('full_name', 'name'))
 
 
 class LoginRequest(BaseModel):

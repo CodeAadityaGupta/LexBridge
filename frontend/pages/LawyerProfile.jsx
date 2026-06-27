@@ -235,6 +235,7 @@ export default function LawyerProfile() {
         onClose={() => setIsBookingOpen(false)}
         lawyerName={lawyer.name}
         specialty={lawyer.specialty}
+        lawyerId={id}
       />
     </div>
   );
