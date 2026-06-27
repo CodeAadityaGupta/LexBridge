@@ -1,56 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
+import { lawyerService } from '../../services/lawyerService';
 import LawyerCard from './LawyerCard';
-import Input from '../UI/input';
-
-// Static lawyers for Step 6 (mock data first)
-const MOCK_LAWYERS = [
-  {
-    id: '1',
-    name: 'Rohan Sharma',
-    specialty: 'Criminal Defence',
-    rating: '4.8',
-    fee: '₹1,500',
-    experience: 12,
-    avatar: '',
-  },
-  {
-    id: '2',
-    name: 'Priya Menon',
-    specialty: 'Property Disputes',
-    rating: '4.9',
-    fee: '₹2,000',
-    experience: 15,
-    avatar: '',
-  },
-  {
-    id: '3',
-    name: 'Amit Patel',
-    specialty: 'Family Law',
-    rating: '4.7',
-    fee: '₹1,200',
-    experience: 8,
-    avatar: '',
-  },
-  {
-    id: '4',
-    name: 'Siddharth Sen',
-    specialty: 'Labour Law',
-    rating: '4.8',
-    fee: '₹1,800',
-    experience: 10,
-    avatar: '',
-  },
-  {
-    id: '5',
-    name: 'Anjali Deshmukh',
-    specialty: 'Corporate Law',
-    rating: '4.9',
-    fee: '₹3,000',
-    experience: 14,
-    avatar: '',
-  },
-];
+import Spinner from '../UI/spinner';
 
 const SPECIALTIES = [
   'All Specialties',
@@ -62,13 +14,31 @@ const SPECIALTIES = [
 ];
 
 export default function LawyerSidebar() {
-  const [lawyers, setLawyers] = useState(MOCK_LAWYERS);
+  const [allLawyers, setAllLawyers] = useState([]);
+  const [filteredLawyers, setFilteredLawyers] = useState([]);
   const [search, setSearch] = useState('');
   const [specialty, setSpecialty] = useState('All Specialties');
+  const [loading, setLoading] = useState(true);
 
-  // Client-side search and filter logic
+  // Fetch lawyers from database service
   useEffect(() => {
-    let filtered = MOCK_LAWYERS;
+    const fetchLawyers = async () => {
+      try {
+        const data = await lawyerService.getLawyers();
+        setAllLawyers(data);
+        setFilteredLawyers(data);
+      } catch (err) {
+        console.error("Failed to load lawyers in sidebar:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLawyers();
+  }, []);
+
+  // Filter logic on search and specialty changes
+  useEffect(() => {
+    let filtered = allLawyers;
 
     if (search.trim() !== '') {
       const term = search.toLowerCase();
@@ -83,8 +53,8 @@ export default function LawyerSidebar() {
       filtered = filtered.filter((l) => l.specialty === specialty);
     }
 
-    setLawyers(filtered);
-  }, [search, specialty]);
+    setFilteredLawyers(filtered);
+  }, [search, specialty, allLawyers]);
 
   return (
     <aside className="w-full md:w-[320px] bg-card border-t md:border-t-0 md:border-l border-border flex flex-col h-full shrink-0">
@@ -130,8 +100,13 @@ export default function LawyerSidebar() {
 
       {/* Lawyers Catalog Scroll Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {lawyers.length > 0 ? (
-          lawyers.map((lawyer) => (
+        {loading ? (
+          <div className="py-12 flex flex-col items-center justify-center space-y-2">
+            <Spinner size="md" />
+            <span className="text-xs text-muted font-sans">Loading advocates...</span>
+          </div>
+        ) : filteredLawyers.length > 0 ? (
+          filteredLawyers.map((lawyer) => (
             <LawyerCard key={lawyer.id} lawyer={lawyer} />
           ))
         ) : (
