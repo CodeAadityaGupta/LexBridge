@@ -2,24 +2,41 @@ import { create } from 'zustand';
 
 export const useAuthStore = create((set) => ({
   user: null,
+  token: null,
   isAuthenticated: false,
-  login: (userData) => {
+
+  login: (userData, token) => {
     localStorage.setItem('user', JSON.stringify(userData));
-    set({ user: userData, isAuthenticated: true });
+    if (token) {
+      localStorage.setItem('token', token);
+    }
+    set({ 
+      user: userData, 
+      token: token || localStorage.getItem('token'), 
+      isAuthenticated: true 
+    });
   },
+
   logout: () => {
     localStorage.removeItem('user');
-    set({ user: null, isAuthenticated: false });
+    localStorage.removeItem('token');
+    set({ user: null, token: null, isAuthenticated: false });
   },
-  // Simple hydration helper
+
   hydrate: () => {
-    const stored = localStorage.getItem('user');
-    if (stored) {
+    const storedUser = localStorage.getItem('user');
+    const storedToken = localStorage.getItem('token');
+    if (storedUser && storedToken) {
       try {
-        const userData = JSON.parse(stored);
-        set({ user: userData, isAuthenticated: true });
+        const userData = JSON.parse(storedUser);
+        set({ 
+          user: userData, 
+          token: storedToken, 
+          isAuthenticated: true 
+        });
       } catch (e) {
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
       }
     }
   }
