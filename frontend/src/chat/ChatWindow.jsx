@@ -65,6 +65,16 @@ export default function ChatWindow() {
           </span>
           <span className="text-[10px] text-muted font-sans font-medium">AI Evaluator</span>
         </div>
+
+        {/* Floating Browse button on mobile */}
+        {onToggleSidebar && (
+          <button
+            onClick={onToggleSidebar}
+            className="md:hidden inline-flex items-center px-3 py-1.5 bg-accent-light text-accent text-[11px] font-bold uppercase tracking-wider rounded hover:bg-[#e2e6fb] transition-colors outline-none"
+          >
+            Browse Directory
+          </button>
+        )}
       </div>
 
       {/* Messages Scroll View */}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { lawyerService } from '../../services/lawyerService';
 import LawyerCard from './LawyerCard';
 import Spinner from '../UI/spinner';
@@ -13,14 +13,14 @@ const SPECIALTIES = [
   'Corporate Law',
 ];
 
-export default function LawyerSidebar() {
+export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
   const [allLawyers, setAllLawyers] = useState([]);
   const [filteredLawyers, setFilteredLawyers] = useState([]);
   const [search, setSearch] = useState('');
   const [specialty, setSpecialty] = useState('All Specialties');
   const [loading, setLoading] = useState(true);
 
-  // Fetch lawyers from database service
+  // Fetch lawyers on mount
   useEffect(() => {
     const fetchLawyers = async () => {
       try {
@@ -36,7 +36,7 @@ export default function LawyerSidebar() {
     fetchLawyers();
   }, []);
 
-  // Filter logic on search and specialty changes
+  // Filter search logic
   useEffect(() => {
     let filtered = allLawyers;
 
@@ -57,12 +57,31 @@ export default function LawyerSidebar() {
   }, [search, specialty, allLawyers]);
 
   return (
-    <aside className="w-full md:w-[320px] bg-card border-t md:border-t-0 md:border-l border-border flex flex-col h-full shrink-0">
+    <aside 
+      className={`bg-card flex flex-col h-full shrink-0
+        ${isMobileDrawer 
+          ? 'w-full' 
+          : 'hidden md:flex md:w-[260px] lg:w-[320px] md:border-l border-border'
+        }
+      `}
+    >
       {/* Search & Filter Header */}
       <div className="p-4 border-b border-border space-y-3">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted font-sans">
-          Advocate Directory
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted font-sans">
+            Advocate Directory
+          </h3>
+          {/* Close button for mobile drawers */}
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="p-1 rounded-full text-muted hover:bg-accent-light hover:text-accent transition-colors md:hidden outline-none"
+              aria-label="Close sidebar directory"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
 
         {/* Search */}
         <div className="relative">
@@ -76,7 +95,7 @@ export default function LawyerSidebar() {
           />
         </div>
 
-        {/* Specialty Select Dropdown */}
+        {/* Specialty Dropdown */}
         <div className="relative">
           <select
             value={specialty}
@@ -89,7 +108,6 @@ export default function LawyerSidebar() {
               </option>
             ))}
           </select>
-          {/* Custom Select Arrow Icon */}
           <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -98,7 +116,7 @@ export default function LawyerSidebar() {
         </div>
       </div>
 
-      {/* Lawyers Catalog Scroll Area */}
+      {/* Directory Scroll Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {loading ? (
           <div className="py-12 flex flex-col items-center justify-center space-y-2">

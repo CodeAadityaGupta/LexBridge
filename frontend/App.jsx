@@ -9,8 +9,9 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import LawyerProfile from './pages/LawyerProfile';
 
-// Layout & Guards
+// Layout, Guards & Utilities
 import ProtectedRoute from './src/Layout/ProtectedRoute';
+import ErrorBoundary from './src/UI/ErrorBoundary';
 
 function App() {
   const hydrate = useAuthStore((state) => state.hydrate);
@@ -21,37 +22,39 @@ function App() {
   }, [hydrate]);
 
   return (
-    <Router>
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+    <ErrorBoundary>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
-        {/* Protected Dashboard Route */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+          {/* Protected Dashboard Route */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Protected Lawyer Profile Route */}
-        <Route
-          path="/lawyer/:id"
-          element={
-            <ProtectedRoute>
-              <LawyerProfile />
-            </ProtectedRoute>
-          }
-        />
+          {/* Protected Lawyer Profile Route */}
+          <Route
+            path="/lawyer/:id"
+            element={
+              <ProtectedRoute>
+                <LawyerProfile />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Fallback Catch-All */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
+          {/* Fallback Catch-All */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
