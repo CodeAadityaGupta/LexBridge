@@ -6,6 +6,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from gateway.middleware import jwt_middleware
 from services.auth.router import router as auth_router
 from services.lawyers.router import router as lawyers_router
+from services.chat.router import router as chat_router
 
 app = FastAPI(
     title="LexBridge API",
@@ -31,6 +32,7 @@ app.add_middleware(BaseHTTPMiddleware, dispatch=jwt_middleware)
 # --- Routers ---
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
 app.include_router(lawyers_router, prefix="/lawyers", tags=["Lawyers"])
+app.include_router(chat_router, prefix="/chat", tags=["Chat"])
 
 
 @app.get("/health")
