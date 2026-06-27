@@ -1,0 +1,27 @@
+CONSUMER DISPUTES — INDIA
+
+Consumer protection in India is governed by the Consumer Protection Act 2019, which replaced the 1986 Act. The new Act strengthens consumer rights, introduces product liability, and creates a dedicated central authority (CCPA). Consumers can approach the District Commission, State Commission, or National Commission depending on the value of the claim.
+
+Who is a consumer: A person who buys goods or avails services for personal use is a consumer. Commercial buyers (who buy for resale) are not consumers. A person who uses a product or service even if they did not pay for it (e.g., family members) is also a consumer.
+
+Jurisdiction by value: District Consumer Commission handles claims up to ₹50 lakhs. State Consumer Commission handles claims between ₹50 lakhs and ₹2 crores. National Consumer Disputes Redressal Commission handles claims above ₹2 crores. Appeals can be filed from District to State, and State to National, within 30 days of the order.
+
+Limitation period: A complaint must be filed within 2 years from the date on which the cause of action arose. The Commission can condone delay if the complainant explains the delay satisfactorily.
+
+Deficiency of service: Deficiency means any fault, imperfection, shortcoming, or inadequacy in the quality, nature, or manner of performance of a service. Common examples include: airline cancellation without refund, builder failing to deliver possession on time, insurance claim wrongly rejected, hospital negligence, e-commerce platform not processing returns.
+
+RERA (Real Estate): The Real Estate Regulation and Development Act 2016 governs residential and commercial real estate projects. Builders must register projects and give quarterly updates. A builder who delays possession must pay interest at SBI MCLR + 2% for each month of delay. A buyer can withdraw from the project and claim a full refund with interest if the builder delays beyond the agreed date.
+
+Product liability: Under the Consumer Protection Act 2019, a manufacturer, seller, or service provider can be held liable for harm caused by a defective product or deficient service without proof of negligence. This includes personal injury, property damage, and death.
+
+Unfair trade practices: Unfair trade practices include misleading advertisements, false representations, and bait-and-switch selling. The CCPA can take suo motu cognizance and impose penalties up to ₹10 lakhs for first offence and ₹50 lakhs for repeat offences.
+
+Online shopping disputes: For disputes arising from e-commerce transactions, the consumer can file a complaint against the platform operator. The Consumer Protection (E-Commerce) Rules 2020 require platforms to disclose seller information, have a grievance redressal mechanism, and process refunds within specified timelines.
+
+Insurance disputes: If an insurer wrongly repudiates (rejects) a claim, the policyholder can approach the Insurance Ombudsman (free service) or file a complaint with the consumer forum. Courts have held that repudiation on technical grounds that do not prejudice the insurer is arbitrary and illegal.
+
+Medical negligence: Medical negligence cases can be filed before consumer forums after the Supreme Court reaffirmed in Kusum Sharma v Batra Hospital that doctors and hospitals are service providers under consumer law. A consumer forum can award compensation for negligence, misdiagnosis, and failure to obtain informed consent.
+
+Process for filing a complaint: Prepare a detailed complaint stating facts, attach all documents (invoices, receipts, correspondence), and file before the appropriate District Commission (online at edaakhil.nic.in or in person). Pay a nominal court fee. The Commission will serve notice to the opposite party. Mediation is attempted first; if it fails, the matter proceeds to hearing.
+
+Documents required: Purchase invoice or bill, payment receipt, warranty card, correspondence with the seller/service provider (emails, chat screenshots), photographs of defective goods if applicable, expert opinion in medical negligence cases.

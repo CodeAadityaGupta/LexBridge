@@ -1,0 +1,25 @@
+LABOUR LAW — INDIA
+
+Labour law in India is a concurrent subject governed by both Central and State governments. Key Central legislations include the Industrial Disputes Act 1947, the Factories Act 1948, the Payment of Wages Act 1936, the Minimum Wages Act 1948, the Employees' Provident Funds Act 1952, the Employees' State Insurance Act 1948, and the Payment of Gratuity Act 1972. The four Labour Codes enacted in 2019–2020 consolidate many of these laws, though their commencement has been delayed in most states.
+
+Wrongful termination: An employee can be terminated only for valid reasons and following due process. Under the Industrial Disputes Act, a workman employed for more than 240 days in a year in an establishment with 100+ workers cannot be retrenched without prior government permission. Retrenchment without permission is void. A "workman" is defined broadly and includes most employees except those in managerial or supervisory roles.
+
+Notice and notice pay: Employment contracts typically require 1–3 months notice. If the employer terminates without proper notice, the employee is entitled to pay in lieu of notice. If an employee leaves without notice, the employer can deduct notice pay from the final settlement.
+
+Gratuity: An employee is entitled to gratuity after completing 5 years of continuous service. The amount is calculated as: (Last drawn basic salary × 15 × years of service) / 26. For employees covered under the Payment of Gratuity Act 1972, the maximum gratuity is ₹20 lakhs. Gratuity is payable within 30 days of the employee's last working day.
+
+Provident Fund (PF): Establishments with 20+ employees must register under the EPF Act. The contribution is 12% of basic salary from both employer and employee. If an employer deducts PF from salary but does not deposit it with EPFO, this is a criminal offence under Section 14 of the EPF Act. Employees can check their PF balance on the EPFO portal using their UAN number.
+
+ESI: Employees earning up to ₹21,000/month in establishments covered under ESI must be enrolled. ESI provides medical coverage, sickness benefits, maternity benefits, and disability compensation. Non-enrolment by the employer is a punishable offence.
+
+Sexual harassment at the workplace: The POSH Act 2013 (Prevention, Prohibition and Redressal of Sexual Harassment) requires every establishment with 10+ employees to constitute an Internal Complaints Committee (ICC). A complaint must be filed within 3 months of the incident. The ICC inquiry must be completed within 90 days. If the employer does not have an ICC, they can face a penalty of ₹50,000.
+
+Minimum wages: Every state sets minimum wages for different categories of scheduled employment. Non-payment of minimum wages is a cognizable offence. Employees can complain to the Labour Commissioner or file a claim before the Labour Court.
+
+Bonus: Under the Payment of Bonus Act 1965, employees earning up to ₹21,000/month are entitled to an annual bonus of 8.33% to 20% of salary. The bonus must be paid within 8 months of the close of the accounting year.
+
+Maternity benefits: Under the Maternity Benefit Act 1961 (amended 2017), women employed in establishments with 10+ workers are entitled to 26 weeks of paid maternity leave for the first two children. The employer cannot terminate a woman's employment during or for her maternity leave. Crèche facilities are mandatory in establishments with 50+ employees.
+
+Industrial dispute resolution: Disputes can be referred to Conciliation Officers, Labour Courts, or Industrial Tribunals. Workers can also approach the Labour Commissioner for mediation. For individual disputes (wrongful dismissal, non-payment of dues), the remedy is typically before the Labour Court under Section 33-C of the Industrial Disputes Act.
+
+Documents needed in labour disputes: Employment appointment letter, salary slips, bank statements showing salary credits, PF account statements, any written correspondence regarding termination, copies of HR policies, ESI card.

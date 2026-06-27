@@ -1,0 +1,27 @@
+PROPERTY REGISTRATION — INDIA
+
+Property registration in India is governed by the Registration Act 1908 and the Transfer of Property Act 1882. All immovable property transactions above ₹100 in value must be registered to be legally valid and enforceable. An unregistered sale deed cannot be used as evidence to prove title.
+
+Sale deed: A sale deed is the primary document that transfers ownership of property from seller to buyer. It must be: (1) executed on stamp paper of appropriate value, (2) signed by both parties and two witnesses, (3) presented at the Sub-Registrar's office within 4 months of execution, and (4) both buyer and seller (or authorised representatives) must be physically present.
+
+Stamp duty: Stamp duty is a state subject and rates vary from 3% to 8% of the market value or circle rate (whichever is higher). Under-reporting the sale consideration to evade stamp duty is an offence. The Sub-Registrar can refer the matter to the Collector for valuation if the stated price appears lower than market value.
+
+Registration charges: Separate from stamp duty, registration charges are typically 1% of the property value, subject to a maximum cap (varies by state). Total transaction cost including stamp duty and registration is typically 5–9% of property value.
+
+Encumbrance certificate: An encumbrance certificate (EC) confirms that the property is free from mortgages, charges, liens, or other encumbrances for a specified period. It is obtained from the Sub-Registrar's office and is essential before any purchase. A buyer who purchases property with outstanding loans against it can face serious legal complications.
+
+Title verification: A lawyer typically traces the title for 30 years (15 years minimum). This involves examining all prior sale deeds, partition deeds, inheritance documents, and confirming that the chain of ownership is unbroken. If title is found defective, the buyer should not proceed.
+
+Power of Attorney (PoA): A PoA allows one person (the agent) to act on behalf of another (the principal) in property transactions. General Power of Attorney (GPA) covers multiple acts; Special Power of Attorney (SPA) is for a specific transaction. A PoA must be registered to be valid for immovable property transactions. The Supreme Court has held that a GPA cannot itself transfer title — only a registered sale deed can do so.
+
+Agricultural land restrictions: In many states, agricultural land can only be purchased by farmers or agricultural families. Non-farmers who wish to purchase agricultural land must seek conversion of land use from agricultural to residential or commercial, which requires approval from the Collector and the local planning authority.
+
+Inheritance and succession: When an owner dies intestate (without a will), property devolves as per personal law. Under the Hindu Succession Act (as amended in 2005), daughters have equal rights with sons in ancestral property. A legal heir certificate or succession certificate from a civil court is required to transfer property in the name of legal heirs.
+
+Will registration: A will does not require registration but registration significantly reduces the risk of forgery disputes. A registered will is deposited with the Sub-Registrar and can be retrieved after the testator's death by the executor. Probate of a will (court validation) is mandatory in certain cities (Mumbai, Chennai, Kolkata) and is advisable in complex estate cases.
+
+RERA registration: Before selling any unit in a housing project with more than 8 units or 500 sq m area, the builder must register the project with the state RERA authority and upload all project documents. Buyers should always check RERA registration before paying any advance.
+
+Documents required for property purchase: Sale deed of seller, prior chain of title documents (minimum 30 years), encumbrance certificate, property tax receipts, approved building plan, occupation certificate (for apartments), no-objection certificate from housing society, Aadhaar and PAN of both parties, passport-size photographs.
+
+Mutation: After registration, the buyer must apply for mutation (khata/patta) at the local municipal body to update revenue records in their name. Mutation is not a proof of title but is required for property tax assessment and future transactions.

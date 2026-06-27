@@ -1,6 +1,6 @@
 # Framework
 fastapi
-uvicorn
+uvicorn[standard]
 
 # Auth
 bcrypt
@@ -12,11 +12,14 @@ supabase
 
 # Validation
 pydantic
-pydantic
+pydantic[email]
+pydantic-settings
 
 # Chat / AI
 langchain
-langchain-google-generativeai
+langchain-core
+langchain-community
+langchain-google-genai
 chromadb
 sentence-transformers
 
