@@ -52,7 +52,7 @@ export default function ChatWindow() {
   };
 
   return (
-    <div className="flex flex-col h-full overflow-hidden bg-[#fafbfe]">
+    <div className="flex flex-col h-full overflow-hidden bg-surface">
       {/* Chat Area Header */}
       <div className="h-14 px-6 border-b border-border flex items-center justify-between bg-card">
         <div className="flex items-center space-x-2">

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./main.jsx",
@@ -10,16 +11,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#0F1117',
-        surface: '#F7F8FC',
-        card: '#FFFFFF',
-        accent: '#2D3A8C',
-        'accent-light': '#EEF0FA',
-        muted: '#6B7280',
-        border: '#E5E7EB',
-        success: '#16A34A',
-        warning: '#D97706',
-        error: '#DC2626',
+        ink: 'var(--ink)',
+        surface: 'var(--surface)',
+        card: 'var(--card)',
+        accent: 'var(--accent)',
+        'accent-light': 'var(--accent-light)',
+        muted: 'var(--muted)',
+        border: 'var(--border)',
+        success: 'var(--success)',
+        warning: 'var(--warning)',
+        error: 'var(--error)',
       },
       fontFamily: {
         serif: ['"DM Serif Display"', 'serif'],

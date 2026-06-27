@@ -26,6 +26,23 @@
   --shadow-focus: 0 0 0 3px rgba(45,58,140,0.2);
 }
 
+:root.dark {
+  --ink: #F3F4F6;
+  --surface: #0A0B10;
+  --card: #121420;
+  --accent: #4B5AC8;
+  --accent-light: #1A1C2E;
+  --muted: #9CA3AF;
+  --border: #23273B;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-modal: 0 20px 60px rgba(0,0,0,0.5);
+  --shadow-focus: 0 0 0 3px rgba(75,90,200,0.4);
+}
+
 /* Custom font styles matching Type Scale of Section 1.2 */
 .font-serif-display {
   font-family: "DM Serif Display", serif;
@@ -55,4 +72,11 @@
   .page-fade {
     opacity: 1; /* Instant transition */
   }
+}
+
+/* Explicit fallback backgrounds to prevent flash of unstyled theme */
+html, body {
+  background-color: var(--surface);
+  color: var(--ink);
+  transition: background-color 150ms ease, color 150ms ease;
 }

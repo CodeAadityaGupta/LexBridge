@@ -14,7 +14,7 @@ export default function Button({
 
   const variants = {
     primary: 'bg-accent text-white hover:bg-accent/90 focus-visible:ring-3 focus-visible:ring-accent/20 focus-visible:border-accent',
-    secondary: 'bg-accent-light text-accent hover:bg-[#e4e7f8] focus-visible:ring-3 focus-visible:ring-accent/20 focus-visible:border-accent',
+    secondary: 'bg-accent-light text-accent hover:bg-accent/10 focus-visible:ring-3 focus-visible:ring-accent/20 focus-visible:border-accent',
     ghost: 'text-accent hover:bg-accent-light focus-visible:ring-3 focus-visible:ring-accent/20 focus-visible:border-accent',
     danger: 'bg-error text-white hover:bg-error/90 focus-visible:ring-3 focus-visible:ring-error/20 focus-visible:border-error',
   };

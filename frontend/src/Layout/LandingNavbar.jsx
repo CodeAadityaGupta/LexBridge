@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Sun, Moon } from 'lucide-react';
+import { useAuthStore } from '../../store/authStore';
 import Button from '../UI/Button';
 
 export default function LandingNavbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme } = useAuthStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +42,21 @@ export default function LandingNavbar() {
 
       {/* Auth Actions */}
       <div className="flex items-center space-x-3">
+        {/* Dark Mode Toggle */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={toggleTheme}
+          className="!p-2 rounded-full !w-9 !h-9 flex items-center justify-center shrink-0"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? (
+            <Sun className="w-4 h-4 text-amber-500 fill-amber-500" />
+          ) : (
+            <Moon className="w-4 h-4 text-ink" />
+          )}
+        </Button>
+
         <Link to="/login">
           <Button variant="ghost" size="sm">
             Log in

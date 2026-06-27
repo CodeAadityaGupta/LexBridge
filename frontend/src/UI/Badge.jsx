@@ -11,9 +11,9 @@ export default function Badge({
   const variants = {
     default: 'bg-surface text-muted border border-border',
     accent: 'bg-accent-light text-accent border border-accent-light',
-    success: 'bg-[#EBF7EE] text-success border border-[#EBF7EE]',
-    warning: 'bg-[#FFF7ED] text-warning border border-[#FFF7ED]',
-    error: 'bg-[#FEF2F2] text-error border border-[#FEF2F2]',
+    success: 'bg-success/10 text-success border border-success/15',
+    warning: 'bg-warning/10 text-warning border border-warning/15',
+    error: 'bg-error/10 text-error border border-error/15',
   };
 
   return (

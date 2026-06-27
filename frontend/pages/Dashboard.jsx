@@ -16,13 +16,15 @@ export default function Dashboard() {
       {/* Split screen content area (subtracts navbar height) */}
       <main className="flex-1 flex flex-col md:flex-row h-[calc(100vh-64px)] overflow-hidden relative">
         
-        {/* Chat window occupies remaining flex space */}
-        <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#fafbfe]">
-          <ChatWindow onToggleSidebar={handleOpenSidebar} />
+        {/* Lawyer directory sidebar: Primary panel on desktop (flex-1), hidden on mobile */}
+        <div className="hidden md:flex flex-1 flex-col h-full overflow-hidden bg-card">
+          <LawyerSidebar onClose={handleCloseSidebar} />
         </div>
 
-        {/* Lawyer directory sidebar (visible on desktop/tablet, hidden on mobile) */}
-        <LawyerSidebar onClose={handleCloseSidebar} />
+        {/* Chat window: Secondary panel on desktop (fixed width), full width on mobile */}
+        <div className="w-full md:w-[360px] lg:w-[400px] flex flex-col h-full overflow-hidden bg-surface md:border-l border-border shrink-0">
+          <ChatWindow onToggleSidebar={handleOpenSidebar} />
+        </div>
 
         {/* Mobile Slide-Up Drawer Overlay */}
         {mobileSidebarOpen && (
