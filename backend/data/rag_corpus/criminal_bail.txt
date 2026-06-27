@@ -1,0 +1,29 @@
+CRIMINAL BAIL — INDIA
+
+Bail is the temporary release of an accused person from custody on the condition that they appear before the court when required. In India, bail is governed by the Code of Criminal Procedure (CrPC), 1973, and its successor the Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023.
+
+Types of bail: Regular bail (Section 437/439 CrPC) is sought after arrest. Anticipatory bail (Section 438 CrPC) is sought before arrest, in apprehension of arrest. Interim bail is temporary relief given while a bail application is pending hearing.
+
+Bailable offences: For bailable offences (listed in Schedule I of CrPC), bail is a right, not a privilege. The police officer or magistrate must grant bail upon execution of a bail bond, with or without sureties.
+
+Non-bailable offences: For non-bailable offences (e.g., murder, rape, dacoity), bail is a discretion of the court, not a right. Relevant factors include the nature and gravity of the accusation, the antecedents of the accused, the possibility of fleeing justice, and whether the accused would tamper with evidence or influence witnesses.
+
+Three twin conditions for certain offences: Under UAPA, NDPS Act (for commercial quantity), PMLA, and POCSO, the court must be satisfied that there are reasonable grounds to believe the accused is not guilty AND that they will not commit any offence while on bail. These are called "twin conditions" and make bail significantly harder to obtain.
+
+Anticipatory bail process: A person apprehending arrest can approach the Sessions Court or High Court. The court considers the nature of accusation, the role of the person, and the genuineness of the allegation. Anticipatory bail can be granted with conditions such as joining investigation, surrendering passport, not leaving the country, and reporting to police periodically.
+
+Surety requirements: A surety is a person who guarantees that the accused will appear in court. The court specifies the amount of the bail bond and the number of sureties required. A property surety must show clear title; a personal surety must demonstrate financial capacity.
+
+Cash bail: In practice, courts sometimes accept a cash deposit in lieu of surety. This is common in traffic and minor offence cases.
+
+Conditions typically imposed: Courts routinely impose conditions such as surrendering passport, not leaving the state, reporting to the nearest police station weekly, not contacting witnesses, and not tampering with evidence.
+
+Cancellation of bail: Bail can be cancelled under Section 439(2) CrPC if the accused violates bail conditions, commits a new offence, or attempts to abscond. The prosecution or victim can apply for cancellation.
+
+Bail in economic offences: Courts are stricter about bail in cases involving large-scale financial fraud, money laundering, or tax evasion. The Supreme Court has held that economic offences are a class apart and prima facie evidence of guilt is sufficient to deny bail.
+
+Documents required for bail application: FIR copy, arrest memo, charge sheet (if filed), surety documents (Aadhaar, property papers or income proof), any document establishing the accused's roots in society (property ownership, employment letter, family ties).
+
+Role of a lawyer: An experienced bail lawyer can argue grounds such as false implication, no prior criminal record, roots in the community, and non-cognizability of the offence. In High Court bail matters, a well-drafted bail application addressing all CrPC factors significantly improves chances.
+
+NDPS Act bail: Under the NDPS Act, bail for commercial quantity cases is extremely difficult due to the twin conditions under Section 37. The accused must establish prima facie innocence and the court must be satisfied they will not re-offend. High Courts have been granted such bail only in exceptional cases — prolonged incarceration, completion of investigation, or illness.
