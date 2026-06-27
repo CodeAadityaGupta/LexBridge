@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Scale } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import Avatar from '../UI/Avatar';
 import Button from '../UI/Button';
@@ -21,7 +21,7 @@ export default function Navbar() {
         <span className="font-sans font-semibold text-lg tracking-tight text-ink">
           LexBridge
         </span>
-        <span className="text-accent text-lg">⚖</span>
+        <Scale className="w-5 h-5 text-accent shrink-0" />
       </Link>
 
       {/* User Actions */}

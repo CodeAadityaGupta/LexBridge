@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Scale } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import Button from '../UI/Button';
 
@@ -35,9 +35,7 @@ export default function LandingNavbar() {
         <span className="font-sans font-semibold text-xl tracking-tight text-ink">
           LexBridge
         </span>
-        <span className="text-accent text-lg transition-transform group-hover:rotate-12 duration-200">
-          ⚖
-        </span>
+        <Scale className="w-5 h-5 text-accent transition-transform group-hover:rotate-12 duration-200 shrink-0" />
       </Link>
 
       {/* Auth Actions */}

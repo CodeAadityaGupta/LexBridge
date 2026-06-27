@@ -225,11 +225,21 @@ export default function Landing() {
           <div className="space-y-3 max-w-sm">
             <div className="flex items-center space-x-2">
               <span className="font-semibold text-lg tracking-tight">LexBridge</span>
-              <span className="text-accent-light text-base">⚖</span>
+              <Scale className="w-5 h-5 text-accent-light shrink-0" />
             </div>
             <p className="text-[#a5abbf] text-xs leading-relaxed">
               Legal help should not depend on who you know. We help you evaluate your situation and connect with the right advocate.
             </p>
+          </div>
+          <div className="space-y-2 shrink-0">
+            <p className="font-medium text-white mb-3 uppercase tracking-wider text-xs">Resources</p>
+            <ul className="space-y-1.5">
+              <li>
+                <Link to="/privacy" className="text-[#a5abbf] hover:text-white hover:underline transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
           </div>
           <div className="space-y-2 text-[#a5abbf] text-xs">
             <p className="font-medium text-white mb-3">LEGAL DISCLAIMER</p>
