@@ -1,0 +1,28 @@
+# Framework
+fastapi
+uvicorn
+
+# Auth
+bcrypt
+PyJWT
+python-dotenv
+
+# Supabase
+supabase
+
+# Validation
+pydantic
+pydantic
+
+# Chat / AI
+langchain
+langchain-google-generativeai
+chromadb
+sentence-transformers
+
+# Email
+resend
+
+# Utilities
+httpx
+python-multipart
