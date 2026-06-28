@@ -5,7 +5,22 @@ import Avatar from '../UI/Avatar';
 import Badge from '../UI/Badge';
 
 export default function LawyerCard({ lawyer, isActive = false }) {
-  const { id, name, specialty, rating, fee, avatar, experience } = lawyer;
+  // Support both backend field names and legacy mock field names
+  const id = lawyer.id;
+  const name = lawyer.name;
+  // Backend: specialities (array); mock: specialty (string)
+  const primarySpecialty = lawyer.specialty
+    || (lawyer.specialities && lawyer.specialities[0])
+    || '';
+  // Backend: consultation_fee (int in INR); mock: fee (formatted string)
+  const fee = lawyer.fee
+    || (lawyer.consultation_fee != null ? `₹${lawyer.consultation_fee.toLocaleString('en-IN')}` : '');
+  // Backend: experience_years; mock: experience
+  const experience = lawyer.experience ?? lawyer.experience_years;
+  // Backend: photo_url; mock: avatar
+  const avatar = lawyer.avatar ?? lawyer.photo_url ?? null;
+  // Backend: rating (float)
+  const rating = lawyer.rating;
 
   return (
     <Link to={`/lawyer/${id}`} className="block select-none">
@@ -33,7 +48,7 @@ export default function LawyerCard({ lawyer, isActive = false }) {
           </div>
 
           <p className="text-xs text-muted font-sans font-medium">
-            {specialty}
+            {primarySpecialty}
           </p>
 
           <div className="flex items-center justify-between pt-1 text-[11px] text-muted font-sans font-medium">

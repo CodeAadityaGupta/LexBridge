@@ -10,13 +10,15 @@ from services.lawyers.router import router as lawyers_router
 from services.chat.router import router as chat_router
 from services.email.router import router as email_router
 
-# Configure logging to output to stdout and a file
+# Configure logging — stdout only.
+# NOTE: Do NOT add a FileHandler here; writing log files inside the backend/
+# directory triggers uvicorn's WatchFiles reloader in an infinite loop.
+import os
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler("server.log", encoding="utf-8")
     ]
 )
 logger = logging.getLogger("gateway")
@@ -27,20 +29,21 @@ app = FastAPI(
     docs_url="/docs"
 )
 
-# CORS — allow React dev server and production domain
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",         # Vite dev
-        "http://localhost:3000",         # Frontend dev (port 3000)
-        "https://lexbridge.vercel.app"   # production
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# -----------------------------------------------------------------------
+# Middleware registration order matters in Starlette/FastAPI:
+# add_middleware() calls are applied in LIFO (last-in, first-out) order.
+# @app.middleware("http") decorators run BEFORE all add_middleware layers.
+#
+# Desired execution order (outermost → innermost):
+#   CORSMiddleware → JWT middleware → log_requests → route handler
+#
+# To achieve this we:
+#   1. Register log_requests via @app.middleware (runs innermost of the three)
+#   2. add_middleware(JWT)  — runs before CORS (added first = executes second)
+#   3. add_middleware(CORS) — added last = outermost = runs FIRST on every request
+# -----------------------------------------------------------------------
 
-# Request logging middleware
+# 1. Request logger — innermost middleware layer
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     logger.info(f"Incoming request: {request.method} {request.url.path}")
@@ -52,8 +55,22 @@ async def log_requests(request: Request, call_next):
         logger.error(f"Request failed: {request.method} {request.url.path} - Error: {str(e)}", exc_info=True)
         raise e
 
-# JWT middleware runs on every request
+# 2. JWT middleware — runs after CORS, before the route handler
 app.add_middleware(BaseHTTPMiddleware, dispatch=jwt_middleware)
+
+# 3. CORS — added LAST so it is the OUTERMOST layer and handles OPTIONS preflights
+#    before JWT middleware ever sees the request.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",         # Vite dev
+        "http://localhost:3000",         # Frontend dev (port 3000)
+        "https://lexbridge.vercel.app"   # production
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Routers ---
 app.include_router(auth_router, prefix="/api/auth", tags=["Auth"])

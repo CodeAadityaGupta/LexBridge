@@ -25,7 +25,8 @@ async function request(endpoint, options = {}) {
 
   if (!response.ok) {
     const errorBody = await response.json().catch(() => ({}));
-    const error = new Error(errorBody.message || `API error: ${response.statusText}`);
+    // FastAPI returns { detail: '...' }; fall back to message for other APIs
+    const error = new Error(errorBody.detail || errorBody.message || `API error: ${response.statusText}`);
     error.status = response.status;
     error.response = response;
     throw error;

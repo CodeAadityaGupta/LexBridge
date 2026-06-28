@@ -43,14 +43,26 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
     if (search.trim() !== '') {
       const term = search.toLowerCase();
       filtered = filtered.filter(
-        (l) =>
-          l.name.toLowerCase().includes(term) ||
-          l.specialty.toLowerCase().includes(term)
+        (l) => {
+          // Support both backend (specialities array) and mock (specialty string)
+          const specialtyStr = l.specialty
+            || (Array.isArray(l.specialities) ? l.specialities.join(' ') : '');
+          return (
+            l.name.toLowerCase().includes(term) ||
+            specialtyStr.toLowerCase().includes(term)
+          );
+        }
       );
     }
 
     if (specialty !== 'All Specialties') {
-      filtered = filtered.filter((l) => l.specialty === specialty);
+      filtered = filtered.filter((l) => {
+        // Backend: specialities is an array; mock: specialty is a string
+        if (Array.isArray(l.specialities)) {
+          return l.specialities.includes(specialty);
+        }
+        return l.specialty === specialty;
+      });
     }
 
     setFilteredLawyers(filtered);

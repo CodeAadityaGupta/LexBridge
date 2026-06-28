@@ -43,8 +43,8 @@ export default function Login() {
 
     try {
       const response = await authService.login(email, password);
-      // Save in state store (and localStorage)
-      loginStore(response.user);
+      // Save in state store (and localStorage): pass user + token
+      loginStore(response.user, response.token);
       navigate(from, { replace: true });
     } catch (err) {
       setApiError(err.message || 'Invalid email or password. Please try again.');

@@ -5,10 +5,15 @@ export const authService = {
     try {
       // Try hitting backend endpoints first
       const data = await api.post('/auth/login', { email, password });
-      if (data.token) {
-        localStorage.setItem('token', data.token);
+      // Backend returns { access_token, token_type, user_id, email }
+      if (data.access_token) {
+        localStorage.setItem('token', data.access_token);
       }
-      return data;
+      // Return a normalised shape: { user: {...}, token: '...' }
+      return {
+        user: { user_id: data.user_id, email: data.email },
+        token: data.access_token,
+      };
     } catch (err) {
       // If it's a structural client/auth reject error from backend, rethrow it
       if (err.status && err.status < 500) {
@@ -39,11 +44,17 @@ export const authService = {
 
   async signup(name, email, password) {
     try {
+      // Backend SignupRequest accepts `full_name` aliased as `name`
       const data = await api.post('/auth/signup', { name, email, password });
-      if (data.token) {
-        localStorage.setItem('token', data.token);
+      // Backend returns { access_token, token_type, user_id, email }
+      if (data.access_token) {
+        localStorage.setItem('token', data.access_token);
       }
-      return data;
+      // Return a normalised shape: { user: {...}, token: '...' }
+      return {
+        user: { user_id: data.user_id, email: data.email, name },
+        token: data.access_token,
+      };
     } catch (err) {
       if (err.status && err.status < 500) {
         throw err;

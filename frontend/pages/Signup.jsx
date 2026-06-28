@@ -48,8 +48,8 @@ export default function Signup() {
 
     try {
       const response = await authService.signup(name, email, password);
-      // Save in state store (and localStorage)
-      loginStore(response.user);
+      // Save in state store (and localStorage): pass user + token
+      loginStore(response.user, response.token);
       navigate('/dashboard');
     } catch (err) {
       setApiError(err.message || 'Registration failed. Please try again.');

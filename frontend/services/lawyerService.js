@@ -177,7 +177,7 @@ const MOCK_LAWYERS = [
 export const lawyerService = {
   async getLawyers() {
     try {
-      return await api.get('/lawyers');
+      return await api.get('/lawyers/');
     } catch (err) {
       console.warn("Lawyers API unreachable. Falling back to local mock data.");
       await new Promise((resolve) => setTimeout(resolve, 600));
