@@ -56,9 +56,9 @@ export default function ChatWindow({ onToggleSidebar }) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-surface border-l border-border/50">
+    <div className="flex flex-col h-full bg-card">
       {/* Chat Area Header */}
-      <div className="h-14 px-5 border-b border-border/60 bg-card flex items-center justify-between shrink-0 select-none">
+      <div className="h-14 px-5 bg-surface/60 flex items-center justify-between shrink-0 select-none">
         <div className="flex items-center space-x-2">
           <Terminal className="w-4 h-4 text-accent" />
           <h2 className="font-sans font-bold text-[10px] text-ink uppercase tracking-widest">
@@ -76,10 +76,10 @@ export default function ChatWindow({ onToggleSidebar }) {
       </div>
 
       {/* Messages Scroll Area */}
-      <div className="flex-1 overflow-y-auto p-5 space-y-5">
+      <div className="flex-1 min-h-0 overflow-y-auto p-5 space-y-5 chat-scroll-area">
         {messages.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-3 select-none">
-            <div className="p-3 bg-accent-light rounded-full border border-accent/15">
+            <div className="p-3 bg-accent-light rounded-full">
               <Terminal className="w-6 h-6 text-accent" />
             </div>
             <div className="space-y-1">
@@ -102,7 +102,7 @@ export default function ChatWindow({ onToggleSidebar }) {
       </div>
 
       {/* Send Input Bar */}
-      <div className="p-4 border-t border-border/60 bg-card">
+      <div className="p-4 bg-card">
         <form onSubmit={handleSend} className="flex items-center space-x-2 max-w-4xl mx-auto">
           <input
             type="text"
@@ -110,7 +110,7 @@ export default function ChatWindow({ onToggleSidebar }) {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             disabled={loading}
-            className="flex-1 h-10 px-4 bg-surface border border-border/80 rounded-md font-sans text-xs text-ink outline-none transition-all placeholder:text-muted/50 focus:shadow-focus focus:border-accent disabled:opacity-60 disabled:cursor-not-allowed"
+            className="flex-1 h-10 px-4 bg-surface rounded-md font-sans text-xs text-ink outline-none transition-all placeholder:text-muted/50 focus:shadow-focus focus:border-accent/40 disabled:opacity-60 disabled:cursor-not-allowed"
           />
           <Button
             type="submit"

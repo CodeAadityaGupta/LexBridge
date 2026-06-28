@@ -90,6 +90,8 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
   const [search, setSearch] = useState('');
   const [selectedCategoryId, setSelectedCategoryId] = useState('all');
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 6;
 
   // Fetch lawyers on mount
   useEffect(() => {
@@ -142,14 +144,24 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
     return allLawyers.filter(category.matches).length;
   };
 
+  // Reset page when search or category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, selectedCategoryId]);
+
   const activeCategoryObject = CATEGORIES.find(c => c.id === selectedCategoryId) || CATEGORIES[0];
+  
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentItems = filteredLawyers.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredLawyers.length / ITEMS_PER_PAGE);
 
   return (
-    <div className="bg-card flex flex-col md:flex-row h-full w-full overflow-hidden select-none">
+    <div className="bg-surface flex flex-col md:flex-row h-full w-full overflow-hidden select-none">
       
       {/* LEFT COLUMN: Categories Sidebar (Hidden on mobile, beautiful column on desktop) */}
-      <div className="hidden md:flex flex-col w-72 border-r border-border/60 bg-surface/15 shrink-0 h-full overflow-hidden">
-        <div className="p-5 border-b border-border/50 shrink-0 bg-surface/5 flex items-center justify-between">
+      <div className="hidden md:flex flex-col w-72 bg-card shrink-0 h-full overflow-hidden shadow-sm">
+        <div className="p-5 shrink-0 bg-card flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Compass className="w-5 h-5 text-accent" />
             <h3 className="text-xs font-extrabold uppercase tracking-widest text-ink font-sans">
@@ -162,7 +174,7 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
         </div>
 
         {/* Category list scroll area */}
-        <div className="flex-1 overflow-y-auto py-3 px-3 space-y-1">
+        <div className="flex-1 min-h-0 overflow-y-auto py-3 px-3 space-y-1">
           {CATEGORIES.map((cat) => {
             const Icon = cat.icon;
             const isActive = selectedCategoryId === cat.id;
@@ -179,7 +191,7 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
                 `}
               >
                 <div className={`p-2 rounded-md shrink-0 transition-colors
-                  ${isActive ? 'bg-white/15 text-white' : 'bg-surface border border-border/80 text-muted group-hover:text-accent'}
+                  ${isActive ? 'bg-white/15 text-white' : 'bg-surface text-muted group-hover:text-accent'}
                 `}>
                   <Icon className="w-4 h-4" />
                 </div>
@@ -187,7 +199,7 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
                   <div className="flex items-center justify-between">
                     <span className="font-sans font-bold text-xs truncate">{cat.name}</span>
                     <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full shrink-0
-                      ${isActive ? 'bg-white/20 text-white' : 'bg-surface border border-border/60 text-muted'}
+                      ${isActive ? 'bg-white/20 text-white' : 'bg-surface text-muted'}
                     `}>
                       {count}
                     </span>
@@ -208,7 +220,7 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
       <div className="flex-1 flex flex-col overflow-hidden h-full">
         
         {/* Search and Filters Header */}
-        <div className="p-5 border-b border-border/50 space-y-4 shrink-0 bg-surface/10">
+        <div className="p-5 space-y-4 shrink-0 bg-surface">
           <div className="flex items-center justify-between">
             <div className="md:hidden flex items-center gap-2">
               <Compass className="w-4.5 h-4.5 text-accent" />
@@ -247,7 +259,7 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
                 placeholder="Search by name, specialty, or city..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-10 pl-10 pr-3.5 bg-surface border border-border/80 rounded-md font-sans text-xs text-ink outline-none transition-all focus:shadow-focus focus:border-accent"
+                className="w-full h-10 pl-10 pr-3.5 bg-card rounded-md font-sans text-xs text-ink outline-none transition-all focus:shadow-focus"
               />
             </div>
 
@@ -261,17 +273,17 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategoryId(cat.id)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold font-sans whitespace-nowrap border transition-all duration-200
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold font-sans whitespace-nowrap transition-all duration-200
                       ${isActive 
-                        ? 'bg-accent text-white border-accent shadow-sm' 
-                        : 'bg-card text-muted border-border/85 hover:bg-accent-light/50'
+                        ? 'bg-accent text-white shadow-sm' 
+                        : 'bg-card text-muted hover:bg-accent-light/50 shadow-sm'
                       }
                     `}
                   >
                     <Icon className="w-3.5 h-3.5" />
                     <span>{cat.name}</span>
                     <span className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded-full
-                      ${isActive ? 'bg-white/20 text-white' : 'bg-surface border border-border/80 text-muted'}
+                      ${isActive ? 'bg-white/20 text-white' : 'bg-surface text-muted'}
                     `}>
                       {count}
                     </span>
@@ -284,7 +296,7 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
 
         {/* Directory Card Grid Area */}
         <div 
-          className={`flex-1 overflow-y-auto p-5
+          className={`flex-1 min-h-0 overflow-y-auto p-5
             ${isMobileDrawer 
               ? 'space-y-3' 
               : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 content-start'
@@ -296,8 +308,8 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
               <Spinner size="md" />
               <span className="text-xs text-muted font-sans font-semibold">Loading advocates...</span>
             </div>
-          ) : filteredLawyers.length > 0 ? (
-            filteredLawyers.map((lawyer) => (
+          ) : currentItems.length > 0 ? (
+            currentItems.map((lawyer) => (
               <LawyerCard key={lawyer.id} lawyer={lawyer} />
             ))
           ) : (
@@ -309,6 +321,56 @@ export default function LawyerSidebar({ onClose, isMobileDrawer = false }) {
             </div>
           )}
         </div>
+
+        {/* Pagination Footer */}
+        {filteredLawyers.length > ITEMS_PER_PAGE && (
+          <div className="p-4 bg-surface flex items-center justify-between shrink-0 select-none">
+            <span className="text-[11px] text-muted font-sans font-medium">
+              Showing <span className="text-ink font-bold">{indexOfFirstItem + 1}</span>–
+              <span className="text-ink font-bold">{Math.min(indexOfLastItem, filteredLawyers.length)}</span> of{' '}
+              <span className="text-ink font-bold">{filteredLawyers.length}</span> advocates
+            </span>
+            
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="p-1.5 rounded bg-card text-muted hover:bg-accent-light hover:text-accent shadow-sm transition-colors outline-none disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-muted disabled:shadow-none"
+                aria-label="Previous page"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`min-w-8 h-8 px-2 rounded text-xs font-bold font-sans transition-all duration-200 outline-none
+                    ${currentPage === page
+                      ? 'bg-accent text-white shadow-sm'
+                      : 'bg-card text-muted hover:bg-accent-light hover:text-accent shadow-sm'
+                    }
+                  `}
+                >
+                  {page}
+                </button>
+              ))}
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="p-1.5 rounded bg-card text-muted hover:bg-accent-light hover:text-accent shadow-sm transition-colors outline-none disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-muted disabled:shadow-none"
+                aria-label="Next page"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

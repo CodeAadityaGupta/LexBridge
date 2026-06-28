@@ -5,41 +5,41 @@
 @tailwind utilities;
 
 :root {
-  /* Color Palette - Enterprise Stripe/Linear inspired */
+  /* Color Palette - Premium Teal & Slate SaaS inspired */
   --ink: #0F172A;
-  --surface: #FAFAFB;
+  --surface: #F1F5F9; /* Slate-100 for high background contrast */
   --card: #FFFFFF;
-  --accent: #2D3A8C;
-  --accent-light: #F1F3FB;
+  --accent: #1591dc; /* Premium Teal */
+  --accent-light: #84bee1; /* Soft teal background tint */
   --muted: #64748B;
-  --border: #E2E8F0;
-  --success: #16A34A;
-  --warning: #D97706;
-  --error: #DC2626;
-
-  /* Layered Shadows */
-  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 12px 24px -4px rgba(0, 0, 0, 0.04);
-  --shadow-modal: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
-  --shadow-focus: 0 0 0 4px rgba(45, 58, 140, 0.15);
-}
-
-:root.dark, html.dark, .dark {
-  /* Dark Mode Palette - Vercel Deep Black */
-  --ink: #F8FAFC;
-  --surface: #030712;
-  --card: #090D16;
-  --accent: #5F6FE2;
-  --accent-light: #161A2B;
-  --muted: #94A3B8;
-  --border: #1F2937;
-  --success: #22C55E;
+  --border: transparent; /* No borders layout */
+  --success: #10B981;
   --warning: #F59E0B;
   --error: #EF4444;
 
+  /* Layered Shadows (more defined for borderless floating cards) */
+  --shadow-card: 0 4px 18px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --shadow-modal: 0 20px 40px -10px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(15, 23, 42, 0.02);
+  --shadow-focus: 0 0 0 4px rgba(13, 148, 136, 0.15);
+}
+
+:root.dark, html.dark, .dark {
+  /* Dark Mode Palette - Premium Midnight Teal */
+  --ink: #F1F5F9;
+  --surface: #0B0F19;
+  --card: #151C2C; /* Slightly lighter card background than surface */
+  --accent: #1591dc; /* Luminous Teal-400 */
+  --accent-light: #123; /* Deep teal shadow tint */
+  --muted: #94A3B8;
+  --border: transparent;
+  --success: #4bb8fa;
+  --warning: #FBBF24;
+  --error: #F87171;
+
   /* Layered Shadows Dark */
-  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 12px 24px -4px rgba(0, 0, 0, 0.4);
-  --shadow-modal: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.02);
-  --shadow-focus: 0 0 0 4px rgba(95, 111, 226, 0.3);
+  --shadow-card: 0 8px 30px -4px rgba(0, 0, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.2);
+  --shadow-modal: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.01);
+  --shadow-focus: 0 0 0 4px rgba(45, 212, 191, 0.25);
 }
 
 /* Custom font styles matching Type Scale */
@@ -82,8 +82,8 @@ html, body {
 
 /* Notion-style custom thin scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -96,5 +96,30 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Custom scrollbar & scroll isolation for Chat Area */
+.chat-scroll-area {
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.chat-scroll-area::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+
+.chat-scroll-area::-webkit-scrollbar-thumb:hover {
   background: var(--muted);
 }

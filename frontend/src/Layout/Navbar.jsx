@@ -31,9 +31,9 @@ export default function Navbar() {
           type="text" 
           placeholder="Search advocates, cases (Ctrl+K)..." 
           disabled
-          className="w-full h-9 pl-10 pr-12 bg-surface/50 border border-border/80 rounded-md font-sans text-xs text-ink placeholder:text-muted/60 outline-none select-none cursor-not-allowed"
+          className="w-full h-9 pl-10 pr-12 bg-surface/50 rounded-md font-sans text-xs text-ink placeholder:text-muted/60 outline-none select-none cursor-not-allowed"
         />
-        <span className="absolute right-3.5 top-1/2 -translate-y-1/2 bg-card border border-border/80 px-1.5 py-0.5 rounded text-[8px] font-mono font-bold text-muted/80 shadow-sm select-none">
+        <span className="absolute right-3.5 top-1/2 -translate-y-1/2 bg-card px-1.5 py-0.5 rounded text-[8px] font-mono font-bold text-muted/80 shadow-sm select-none">
           ⌘K
         </span>
       </div>
@@ -76,8 +76,8 @@ export default function Navbar() {
 
         {/* Profile Avatar */}
         {user && (
-          <div className="flex items-center space-x-2.5 pl-2 border-l border-border/85 h-8">
-            <Avatar name={user.name} src={user.avatar} size="sm" className="h-7 w-7 border border-border" />
+          <div className="flex items-center space-x-2.5 pl-2 border-l border-muted/20 h-8">
+            <Avatar name={user.name} src={user.avatar} size="sm" className="h-7 w-7 shadow-sm" />
             <span className="text-xs font-bold text-ink font-sans hidden lg:inline max-w-[80px] truncate select-none">
               {user.name}
             </span>

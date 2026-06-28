@@ -10,19 +10,19 @@ export default function Dashboard() {
   const handleCloseSidebar = () => setMobileSidebarOpen(false);
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col overflow-hidden page-fade">
+    <div className="h-screen bg-surface flex flex-col overflow-hidden page-fade">
       <Navbar />
       
       {/* Split screen content area (subtracts navbar height) */}
-      <main className="flex-1 flex flex-col md:flex-row h-[calc(100vh-64px)] overflow-hidden relative">
+      <main className="flex-1 min-h-0 flex flex-col md:flex-row overflow-hidden relative">
         
         {/* Lawyer directory sidebar: Primary panel on desktop (flex-1), hidden on mobile */}
-        <div className="hidden md:flex flex-1 flex-col h-full overflow-hidden bg-card border-r border-border/50">
+        <div className="hidden md:flex flex-1 flex-col h-full overflow-hidden">
           <LawyerSidebar onClose={handleCloseSidebar} />
         </div>
 
         {/* Chat window: Secondary panel on desktop (fixed width), full width on mobile */}
-        <div className="w-full md:w-[380px] lg:w-[420px] flex flex-col h-full overflow-hidden bg-surface shrink-0">
+        <div className="w-full md:w-[380px] lg:w-[420px] flex flex-col h-full overflow-hidden bg-card shrink-0">
           <ChatWindow onToggleSidebar={handleOpenSidebar} />
         </div>
 
