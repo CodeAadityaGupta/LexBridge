@@ -126,11 +126,13 @@ export default function Landing() {
           </div>
           
           <div className="pt-10 border-t border-border/40 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[10px] font-bold uppercase tracking-widest text-muted/70 select-none">
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-success shrink-0" /> 12,000+ Cases Assessed</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-success shrink-0" /> Trained on IPC sections dataset</span>
             <span className="hidden sm:inline text-border/80">•</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-success shrink-0" /> 400+ Verified Advocates</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-success shrink-0" /> Verified Advocates</span>
             <span className="hidden sm:inline text-border/80">•</span>
             <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-success shrink-0" /> Bar Registry Audited</span>
+            <span className="hidden sm:inline text-border/80">•</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-success shrink-0" /> Multi-Lingual Support Chatbot</span>
           </div>
         </div>
       </section>
