@@ -146,29 +146,29 @@ export default function LawyerProfile() {
               
               {/* Avatar (72px) */}
               <div className="w-[72px] h-[72px] rounded-full bg-accent-light text-accent flex items-center justify-center font-semibold text-2xl border border-accent/10 select-none">
-                {lawyer.name.split(' ').map(n => n[0]).join('')}
+                {normalised.name.split(' ').map(n => n[0]).join('')}
               </div>
 
               <div className="space-y-2 flex-1 min-w-0">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <h1 className="font-serif-display text-2xl md:text-3xl text-ink font-bold">
-                    {lawyer.name}
+                    {normalised.name}
                   </h1>
                   <div className="flex items-center space-x-1 text-xs text-ink bg-surface px-2 py-0.5 rounded border border-border/60 self-center sm:self-auto shrink-0 font-medium">
                     <Star className="w-3.5 h-3.5 fill-amber-400 stroke-amber-400" />
-                    <span>{lawyer.rating}</span>
-                    <span className="text-muted">({lawyer.reviews} reviews)</span>
+                    <span>{normalised.rating}</span>
+                    <span className="text-muted">({normalised.reviews} reviews)</span>
                   </div>
                 </div>
 
                 <p className="text-sm font-semibold text-accent font-sans">
-                  {lawyer.specialty}
+                  {normalised.specialty}
                 </p>
 
                 <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-2 pt-1 text-xs text-muted font-sans font-medium">
-                  <span className="flex items-center"><MapPin className="w-3.5 h-3.5 mr-1" /> {lawyer.location}</span>
-                  <span className="flex items-center"><Briefcase className="w-3.5 h-3.5 mr-1" /> {lawyer.experience} Years Exp</span>
-                  <span className="flex items-center"><ShieldCheck className="w-3.5 h-3.5 mr-1" /> Bar: {lawyer.barReg}</span>
+                  <span className="flex items-center"><MapPin className="w-3.5 h-3.5 mr-1" /> {normalised.location}</span>
+                  <span className="flex items-center"><Briefcase className="w-3.5 h-3.5 mr-1" /> {normalised.experience} Years Exp</span>
+                  <span className="flex items-center"><ShieldCheck className="w-3.5 h-3.5 mr-1" /> Bar: {normalised.barReg}</span>
                 </div>
               </div>
             </Card>
@@ -179,7 +179,7 @@ export default function LawyerProfile() {
                 Professional Bio
               </h3>
               <div className="space-y-4 text-sm md:text-base text-muted font-sans leading-[1.7]">
-                {lawyer.bio.map((paragraph, idx) => (
+                {normalised.bio.map((paragraph, idx) => (
                   <p key={idx}>{paragraph}</p>
                 ))}
               </div>
@@ -191,7 +191,7 @@ export default function LawyerProfile() {
                 Core Specialties
               </h3>
               <div className="flex flex-wrap gap-2 pt-1">
-                {lawyer.specialties.map((spec) => (
+                {normalised.specialties.map((spec) => (
                   <Badge key={spec} variant="accent" className="px-3.5 py-1 text-xs font-semibold">
                     {spec}
                   </Badge>
@@ -206,7 +206,7 @@ export default function LawyerProfile() {
               </h3>
               
               <div className="space-y-4">
-                {lawyer.cases.map((c, idx) => (
+                {normalised.cases.map((c, idx) => (
                   <Card key={idx} className="!p-5 border-l-4 border-l-accent shadow-sm flex flex-col space-y-2">
                     <div className="flex items-center justify-between gap-4">
                       <h4 className="font-sans font-bold text-sm text-ink leading-snug">
@@ -254,11 +254,11 @@ export default function LawyerProfile() {
               <div className="space-y-4 border-b border-border/50 pb-5">
                 <div className="flex justify-between items-baseline font-sans">
                   <span className="text-xs text-muted font-medium">Consultation Fee</span>
-                  <span className="text-2xl font-bold text-ink">{lawyer.fee}</span>
+                  <span className="text-2xl font-bold text-ink">{normalised.fee}</span>
                 </div>
                 <div className="flex justify-between items-baseline font-sans">
                   <span className="text-xs text-muted font-medium">Typical Retainer</span>
-                  <span className="text-sm font-semibold text-ink">{lawyer.retainer}</span>
+                  <span className="text-sm font-semibold text-ink">{normalised.retainer}</span>
                 </div>
               </div>
 

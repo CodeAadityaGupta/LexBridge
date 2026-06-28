@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, X } from 'lucide-react';
+import { Search, X, Scale } from 'lucide-react';
 import { lawyerService } from '../../services/lawyerService';
 import LawyerCard from './LawyerCard';
 import Spinner from '../UI/spinner';
