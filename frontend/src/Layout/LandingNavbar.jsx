@@ -1,69 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Scale } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import Button from '../UI/Button';
 
 export default function LandingNavbar() {
-  const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useAuthStore();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 h-16 z-40 flex items-center justify-between px-6 md:px-12 transition-all duration-200
-        ${scrolled 
-          ? 'bg-card border-b border-border shadow-sm' 
-          : 'bg-transparent'
-        }
-      `}
+      className="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl h-14 bg-card/75 backdrop-blur-lg border border-border/40 rounded-full shadow-card z-50 flex items-center justify-between px-6 transition-all duration-300"
     >
       {/* Logo */}
       <Link to="/" className="flex items-center space-x-2 select-none group">
-        <span className="font-sans font-semibold text-xl tracking-tight text-ink">
+        <span className="font-sans font-bold text-sm tracking-tight text-ink uppercase tracking-wider pl-1">
           LexBridge
         </span>
-        <span className="text-accent text-lg transition-transform group-hover:rotate-12 duration-200">
-          ⚖
-        </span>
+        <Scale className="w-4 h-4 text-accent transition-transform group-hover:rotate-6 duration-200 shrink-0" />
       </Link>
 
       {/* Auth Actions */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-2">
         {/* Dark Mode Toggle */}
-        <Button
-          variant="ghost"
-          size="sm"
+        <button
           onClick={toggleTheme}
-          className="!p-2 rounded-full !w-9 !h-9 flex items-center justify-center shrink-0"
+          className="p-1.5 rounded-full text-muted hover:text-ink hover:bg-accent-light/40 transition-colors shrink-0 outline-none"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-amber-500 fill-amber-500" />
+            <Sun className="w-4 h-4 text-amber-500 fill-amber-500/20" />
           ) : (
             <Moon className="w-4 h-4 text-ink" />
           )}
-        </Button>
+        </button>
 
         <Link to="/login">
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" className="h-8 px-3 rounded-full text-xs font-bold uppercase tracking-wide">
             Log in
           </Button>
         </Link>
         <Link to="/signup">
-          <Button variant="primary" size="sm">
+          <Button variant="primary" className="h-8 px-4 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
             Sign up
           </Button>
         </Link>

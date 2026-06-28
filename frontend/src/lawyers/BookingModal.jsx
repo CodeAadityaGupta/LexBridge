@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Check } from 'lucide-react';
+import { Check, Calendar } from 'lucide-react';
 import { lawyerService } from '../../services/lawyerService';
 import Modal from '../UI/Modal';
 import Input from '../UI/input';
@@ -136,54 +136,54 @@ export default function BookingModal({ isOpen, onClose, lawyerName, specialty, l
     <Modal
       isOpen={isOpen}
       onClose={success ? handleCloseSuccess : onClose}
-      title={success ? '' : `Book a consultation with ${lawyerName}`}
+      title={success ? '' : `Book consultation with ${lawyerName}`}
       className="max-h-[90vh]"
     >
       {success ? (
         /* Success State */
         <div className="flex flex-col items-center justify-center py-8 text-center space-y-6 select-none font-sans">
-          <div className="w-16 h-16 rounded-full bg-success flex items-center justify-center text-white shadow-md animate-scaleUp">
+          <div className="w-16 h-16 rounded-full bg-success flex items-center justify-center text-white shadow-card animate-scaleUp shrink-0">
             <Check className="w-8 h-8 stroke-[3]" />
           </div>
           
           <div className="space-y-2">
-            <h3 className="font-serif-display text-xl font-bold text-ink">
-              Consultation request sent
+            <h3 className="font-serif text-2xl font-bold text-ink">
+              Consultation Scheduled
             </h3>
-            <p className="text-muted text-sm leading-relaxed max-w-sm mx-auto">
-              We've emailed a confirmation to <strong className="text-ink font-semibold">{email}</strong>.<br />
-              {lawyerName} will reach out to you within 24 hours.
+            <p className="text-muted text-xs leading-relaxed max-w-xs mx-auto">
+              We've dispatched a summary receipt to <strong className="text-ink font-semibold">{email}</strong>.<br />
+              The advocate will contact you within 24 hours.
             </p>
           </div>
 
           <Button 
             onClick={handleCloseSuccess}
             variant="primary"
-            className="px-6 py-2.5 shadow-sm text-sm"
+            className="px-6 h-10 shadow-sm text-xs font-bold uppercase tracking-wider rounded-md"
           >
-            Back to directory
+            Back to Directory
           </Button>
         </div>
       ) : (
         /* Form State */
-        <form onSubmit={handleSubmit} className="space-y-4 text-sans relative">
+        <form onSubmit={handleSubmit} className="space-y-5 font-sans relative">
           
           {/* Loading Overlay */}
           {loading && (
-            <div className="absolute inset-0 bg-card/70 backdrop-blur-sm z-30 flex flex-col items-center justify-center space-y-2">
+            <div className="absolute inset-x-0 -top-7 -bottom-7 bg-card/80 backdrop-blur-sm z-30 flex flex-col items-center justify-center space-y-2">
               <Spinner size="md" />
-              <span className="text-xs text-muted font-sans font-medium">Sending booking request...</span>
+              <span className="text-xs text-muted font-sans font-semibold">Booking Consultation Context...</span>
             </div>
           )}
 
           {apiError && (
-            <div className="p-3 text-xs bg-red-50 border border-red-200 text-error rounded font-medium">
+            <div className="p-3.5 text-xs bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/30 text-error rounded font-bold animate-scaleUp">
               {apiError}
             </div>
           )}
 
           <Input
-            label="Your name"
+            label="Your Full Name"
             type="text"
             value={name}
             onChange={(e) => handleInputChange('name', e.target.value, setName)}
@@ -195,7 +195,7 @@ export default function BookingModal({ isOpen, onClose, lawyerName, specialty, l
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
-              label="Your email"
+              label="Email Address"
               type="email"
               value={email}
               onChange={(e) => handleInputChange('email', e.target.value, setEmail)}
@@ -205,7 +205,7 @@ export default function BookingModal({ isOpen, onClose, lawyerName, specialty, l
               required
             />
             <Input
-              label="Your phone number"
+              label="Phone Number"
               type="tel"
               value={phone}
               onChange={(e) => handleInputChange('phone', e.target.value, setPhone)}
@@ -216,50 +216,61 @@ export default function BookingModal({ isOpen, onClose, lawyerName, specialty, l
             />
           </div>
 
-          <div className="flex flex-col space-y-1.5 w-full">
-            <label className="text-xs font-medium text-ink font-sans">
-              Type of issue <span className="text-error">*</span>
-            </label>
-            <select
-              value={issueType}
-              onChange={(e) => setIssueType(e.target.value)}
-              className="w-full h-11 px-3 bg-white border border-border rounded font-sans text-sm text-ink outline-none cursor-pointer focus:ring-3 focus:ring-accent/20 focus:border-accent"
-            >
-              <option value="Criminal Defence">Criminal Defence</option>
-              <option value="Property Disputes">Property Disputes</option>
-              <option value="Family Law">Family Law</option>
-              <option value="Labour Law">Labour Law</option>
-              <option value="Corporate Law">Corporate Law</option>
-              <option value="General Practice">General Practice</option>
-            </select>
+          {/* Overhauled Specialty selection to match floating label input styling */}
+          <div className="flex flex-col space-y-1 w-full relative">
+            <div className="relative mt-2">
+              <select
+                value={issueType}
+                onChange={(e) => setIssueType(e.target.value)}
+                className="w-full h-11 px-3.5 pt-4 pb-1.5 bg-card border border-border/80 rounded-md font-sans text-xs text-ink outline-none appearance-none cursor-pointer focus:shadow-focus focus:border-accent"
+              >
+                <option value="Criminal Defence">Criminal Defence</option>
+                <option value="Property Disputes">Property Disputes</option>
+                <option value="Family Law">Family Law</option>
+                <option value="Labour Law">Labour Law</option>
+                <option value="Corporate Law">Corporate Law</option>
+                <option value="General Practice">General Practice</option>
+              </select>
+              <label className="absolute left-3.5 top-0 -translate-y-1/2 bg-card px-1.5 text-[9px] font-bold text-accent select-none">
+                Type of Issue
+              </label>
+              <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-muted">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col space-y-1.5 w-full">
-            <label className="text-xs font-medium text-ink font-sans">
-              Briefly describe your situation <span className="text-error">*</span>
-            </label>
-            <textarea
-              rows={3}
-              value={description}
-              onChange={(e) => handleInputChange('description', e.target.value, setDescription)}
-              onBlur={() => handleBlur('description', description)}
-              placeholder="Provide a brief summary of the incident or conflict so the advocate has context..."
-              className={`w-full p-3 bg-white border rounded font-sans text-sm text-ink outline-none transition-all placeholder:text-muted/60 resize-none
-                ${touched.description && errors.description 
-                  ? 'border-error focus:ring-3 focus:ring-error/20 focus:border-error' 
-                  : 'border-border focus:ring-3 focus:ring-accent/20 focus:border-accent'
-                }
-              `}
-            />
+          {/* Overhauled description to match floating label input styling */}
+          <div className="flex flex-col space-y-1 w-full relative">
+            <div className="relative mt-2">
+              <textarea
+                rows={3}
+                value={description}
+                onChange={(e) => handleInputChange('description', e.target.value, setDescription)}
+                onBlur={() => handleBlur('description', description)}
+                placeholder="Provide a brief summary of the conflict..."
+                className={`w-full p-3.5 pt-4.5 bg-card border rounded-md font-sans text-xs text-ink outline-none transition-all placeholder:text-muted/50 resize-none
+                  ${touched.description && errors.description 
+                    ? 'border-error focus:shadow-[0_0_0_4px_rgba(220,38,38,0.15)] focus:border-error' 
+                    : 'border-border/80 focus:shadow-focus focus:border-accent'
+                  }
+                `}
+              />
+              <label className="absolute left-3.5 top-0 -translate-y-1/2 bg-card px-1.5 text-[9px] font-bold text-accent select-none">
+                Situation Description
+              </label>
+            </div>
             {touched.description && errors.description && (
-              <span className="text-xs font-medium text-error font-sans">
+              <span className="text-[10px] font-semibold text-error font-sans animate-scaleUp pl-1">
                 {errors.description}
               </span>
             )}
           </div>
 
           <Input
-            label="Preferred date and time"
+            label="Preferred Date & Time"
             type="datetime-local"
             value={dateTime}
             onChange={(e) => handleInputChange('dateTime', e.target.value, setDateTime)}
@@ -268,15 +279,15 @@ export default function BookingModal({ isOpen, onClose, lawyerName, specialty, l
             required
           />
 
-          <div className="flex justify-end space-x-3 pt-4 border-t border-border">
-            <Button variant="ghost" onClick={onClose} disabled={loading}>
+          <div className="flex justify-end space-x-3 pt-5 border-t border-border/50">
+            <Button variant="ghost" onClick={onClose} disabled={loading} className="h-9 px-3.5 text-xs font-bold uppercase tracking-wider rounded-md">
               Cancel
             </Button>
             <Button 
               type="submit" 
               variant="primary" 
               disabled={loading}
-              className="shadow-sm"
+              className="shadow-sm h-9 px-5 text-xs font-bold uppercase tracking-widest rounded-md"
             >
               Confirm Booking
             </Button>

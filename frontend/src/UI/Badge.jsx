@@ -6,14 +6,22 @@ export default function Badge({
   className = '',
   ...props
 }) {
-  const baseStyle = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium font-sans uppercase tracking-wider select-none';
+  const baseStyle = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-[9px] font-bold font-sans uppercase tracking-widest select-none border shadow-sm';
 
   const variants = {
-    default: 'bg-surface text-muted border border-border',
-    accent: 'bg-accent-light text-accent border border-accent-light',
-    success: 'bg-success/10 text-success border border-success/15',
-    warning: 'bg-warning/10 text-warning border border-warning/15',
-    error: 'bg-error/10 text-error border border-error/15',
+    default: 'bg-surface text-muted border-border/80',
+    accent: 'bg-accent-light text-accent border-accent/20',
+    success: 'bg-success/5 text-success border-success/35',
+    warning: 'bg-warning/5 text-warning border-warning/35',
+    error: 'bg-error/5 text-error border-error/35',
+  };
+
+  const dotColors = {
+    default: 'bg-muted/70',
+    accent: 'bg-accent',
+    success: 'bg-success',
+    warning: 'bg-warning',
+    error: 'bg-error',
   };
 
   return (
@@ -21,6 +29,7 @@ export default function Badge({
       className={`${baseStyle} ${variants[variant]} ${className}`}
       {...props}
     >
+      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dotColors[variant]}`} />
       {children}
     </span>
   );

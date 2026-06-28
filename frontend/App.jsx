@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import LawyerProfile from './pages/LawyerProfile';
+import Privacy from './pages/Privacy';
 
 // Layout, Guards & Utilities
 import ProtectedRoute from './src/Layout/ProtectedRoute';
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/privacy" element={<Privacy />} />
 
           {/* Protected Dashboard Route */}
           <Route

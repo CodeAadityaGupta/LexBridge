@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Star } from 'lucide-react';
+import { Star, ShieldCheck } from 'lucide-react';
 import Avatar from '../UI/Avatar';
 import Badge from '../UI/Badge';
 
@@ -23,38 +23,40 @@ export default function LawyerCard({ lawyer, isActive = false }) {
   const rating = lawyer.rating;
 
   return (
-    <Link to={`/lawyer/${id}`} className="block select-none">
+    <Link to={`/lawyer/${id}`} className="block select-none group">
       <div
-        className={`flex items-start space-x-3 p-4 rounded-md border transition-all duration-150 cursor-pointer
+        className={`flex flex-col justify-between p-6 rounded-2xl border transition-all duration-300 cursor-pointer h-full
           ${isActive 
-            ? 'bg-accent-light border-accent/20' 
-            : 'bg-card border-border hover:bg-accent-light/40 hover:border-accent/10 active:scale-[0.98]'
+            ? 'bg-accent-light border-accent/20 shadow-md' 
+            : 'bg-card border-border/60 hover:border-accent/30 hover:shadow-card hover:-translate-y-[2px] active:scale-[0.98] active:translate-y-0'
           }
         `}
       >
-        {/* Avatar */}
-        <Avatar name={name} src={avatar} size="md" className="border-accent/10" />
-
-        {/* Details */}
-        <div className="flex-1 min-w-0 space-y-1">
-          <div className="flex items-center justify-between gap-2">
-            <h4 className="font-sans font-semibold text-sm text-ink truncate">
-              {name}
-            </h4>
-            <div className="flex items-center space-x-0.5 text-xs text-ink shrink-0 font-medium bg-surface/80 px-1.5 py-0.5 rounded border border-border/40">
-              <Star className="w-3 h-3 fill-amber-400 stroke-amber-400" />
+        <div className="space-y-4">
+          <div className="flex items-start justify-between gap-3">
+            {/* Avatar */}
+            <Avatar name={name} src={avatar} size="md" className="border border-border/80 shadow-sm shrink-0" />
+            
+            {/* Rating badge */}
+            <div className="flex items-center space-x-1 text-[10px] text-ink font-bold bg-surface/80 px-2 py-0.5 rounded border border-border/50 shadow-sm shrink-0">
+              <Star className="w-3.5 h-3.5 fill-amber-500 stroke-amber-500" />
               <span>{rating}</span>
             </div>
           </div>
 
           <p className="text-xs text-muted font-sans font-medium">
-            {primarySpecialty}
+            {specialty}
           </p>
 
           <div className="flex items-center justify-between pt-1 text-[11px] text-muted font-sans font-medium">
             <span>{experience || '10+'} yrs experience</span>
             <span className="text-ink font-semibold">{fee}</span>
           </div>
+        </div>
+
+        <div className="border-t border-border/50 pt-4 mt-4 flex items-center justify-between text-[11px] text-muted font-sans font-semibold">
+          <span>{experience || '10+'} yrs exp</span>
+          <span className="text-ink font-bold">{fee}</span>
         </div>
       </div>
     </Link>
