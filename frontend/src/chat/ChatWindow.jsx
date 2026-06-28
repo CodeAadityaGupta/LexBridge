@@ -36,10 +36,10 @@ export default function ChatWindow({ onToggleSidebar }) {
     setLoading(true);
 
     try {
-      const response = await chatService.sendMessage(sentText);
+      const response = await chatService.sendMessage(sentText, messages);
       const botMessage = {
         sender: 'lexbot',
-        text: response.text,
+        text: response.reply || response.text || '',
         timestamp: new Date().toISOString(),
       };
       addMessage(botMessage);

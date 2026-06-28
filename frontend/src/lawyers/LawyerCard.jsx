@@ -44,13 +44,13 @@ export default function LawyerCard({ lawyer, isActive = false }) {
             </div>
           </div>
 
-          <p className="text-xs text-muted font-sans font-medium">
-            {specialty}
-          </p>
-
-          <div className="flex items-center justify-between pt-1 text-[11px] text-muted font-sans font-medium">
-            <span>{experience || '10+'} yrs experience</span>
-            <span className="text-ink font-semibold">{fee}</span>
+          <div className="space-y-1.5 min-w-0">
+            <h4 className="font-sans font-bold text-xs md:text-sm text-ink group-hover:text-accent transition-colors truncate">
+              {name}
+            </h4>
+            <p className="text-[10px] font-bold text-accent font-sans uppercase tracking-wider">
+              {primarySpecialty}
+            </p>
           </div>
         </div>
 

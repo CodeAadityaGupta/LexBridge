@@ -30,16 +30,16 @@ export default function TypingIndicator() {
       `}} />
 
       {/* LexBot Message Bubble */}
-      <div className="px-4 py-3 bg-accent-light/50 border border-accent/10 rounded-md rounded-tl-none shadow-sm flex items-center space-x-1.5 min-h-[40px]">
+      <div className="px-5 py-3.5 bg-card border border-border/60 rounded-2xl rounded-tl-sm shadow-sm flex items-center space-x-1.5 min-h-[40px]">
         <span className="w-1.5 h-1.5 rounded-full bg-accent/70 typing-dot" />
         <span className="w-1.5 h-1.5 rounded-full bg-accent/70 typing-dot" />
         <span className="w-1.5 h-1.5 rounded-full bg-accent/70 typing-dot" />
       </div>
 
       {/* Label */}
-      <div className="mt-1.5 px-1">
-        <span className="font-sans font-bold text-[9px] uppercase tracking-widest text-muted/65">
-          LEXBOT IS TYPING
+      <div className="mt-1.5 px-1.5 select-none opacity-60">
+        <span className="font-sans font-bold text-[8px] tracking-wider uppercase text-muted">
+          LexBot is typing
         </span>
       </div>
     </div>
