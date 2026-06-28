@@ -222,8 +222,230 @@ lawyers = [
             },
         ],
     },
+    {
+        "name": "Kabir Mehra",
+        "city": "Mumbai",
+        "bar_registration": "MH/ADV/8877",
+        "email": "kabir.mehra@lexbridge.app",
+        "experience_years": 14,
+        "specialities": ["Criminal Law", "White Collar Crime", "Bail Applications"],
+        "about": "Kabir Mehra is an expert criminal defence advocate with 14 years of experience, practicing primarily in the Bombay High Court and local Sessions Courts. He has represented high-profile corporate clients in white-collar crime investigations.",
+        "consultation_fee": 2500,
+        "retainer_min": 40000,
+        "retainer_max": 120000,
+        "rating": 4.9,
+        "notable_cases": [
+            {
+                "title": "Quashed money laundering allegations",
+                "year": 2024,
+                "outcome": "Won",
+                "summary": "Successfully argued for the dismissal of money laundering allegations against a manufacturing firm director at the High Court level.",
+            },
+            {
+                "title": "Bail in economic offence investigation",
+                "year": 2023,
+                "outcome": "Won",
+                "summary": "Secured anticipatory bail for an IT entrepreneur accused of financial embezzlement.",
+            },
+        ],
+    },
+    {
+        "name": "Meera Nair",
+        "city": "Bengaluru",
+        "bar_registration": "KA/ADV/4532",
+        "email": "meera.nair@lexbridge.app",
+        "experience_years": 11,
+        "specialities": ["Corporate Law", "Contract Drafting", "Intellectual Property"],
+        "about": "Meera Nair has 11 years of experience advising startups and multinationals on corporate compliance, contract negotiation, and protecting intellectual property assets. She holds an LL.M. in Business Law.",
+        "consultation_fee": 3000,
+        "retainer_min": 50000,
+        "retainer_max": 150000,
+        "rating": 4.8,
+        "notable_cases": [
+            {
+                "title": "Cross-border tech merger clearance",
+                "year": 2024,
+                "outcome": "Won",
+                "summary": "Drafted and structured transaction documents for a $15 million acquisition of a local AI startup by a US corporation.",
+            },
+            {
+                "title": "Trademark restoration victory",
+                "year": 2023,
+                "outcome": "Won",
+                "summary": "Successfully appealed trademark abandonment order before the Registrar of Trademarks, restoring the client's key brand asset.",
+            },
+        ],
+    },
+    {
+        "name": "Rithvik Sen",
+        "city": "Delhi",
+        "bar_registration": "DL/ADV/3321",
+        "email": "rithvik.sen@lexbridge.app",
+        "experience_years": 9,
+        "specialities": ["Property Law", "Real Estate Transactions", "RERA"],
+        "about": "Rithvik Sen specializes in Delhi-NCR property title searches, land acquisitions, and disputes under RERA. He acts for individual home buyers as well as institutional developers.",
+        "consultation_fee": 1800,
+        "retainer_min": 25000,
+        "retainer_max": 75000,
+        "rating": 4.6,
+        "notable_cases": [
+            {
+                "title": "Delayed project refund recovery",
+                "year": 2023,
+                "outcome": "Won",
+                "summary": "Recovered ₹1.2 Crore plus interest from a prominent NCR builder for a 4-year project delay under RERA.",
+            }
+        ],
+    },
+    {
+        "name": "Divya Rao",
+        "city": "Chennai",
+        "bar_registration": "TN/ADV/7744",
+        "email": "divya.rao@lexbridge.app",
+        "experience_years": 7,
+        "specialities": ["Family Law", "Divorce", "Child Custody"],
+        "about": "Divya Rao is a dedicated family lawyer with a compassionate approach, specializing in contested divorces, custody agreements, and family mediation. She is a certified mediator.",
+        "consultation_fee": 1500,
+        "retainer_min": 20000,
+        "retainer_max": 50000,
+        "rating": 4.7,
+        "notable_cases": [
+            {
+                "title": "Joint custody agreement",
+                "year": 2024,
+                "outcome": "Settled",
+                "summary": "Successfully mediated a complex custody split between parents, securing equal parenting time and educational funding commitments.",
+            }
+        ],
+    },
+    {
+        "name": "Abhishek Goel",
+        "city": "Hyderabad",
+        "bar_registration": "TS/ADV/9090",
+        "email": "abhishek.goel@lexbridge.app",
+        "experience_years": 10,
+        "specialities": ["Cyber Law", "IT Act Offences", "Data Privacy"],
+        "about": "Abhishek Goel practices at the intersection of technology and law. He advises companies on data privacy compliance (DPDP Act) and represents clients in cyber fraud and online identity theft matters.",
+        "consultation_fee": 2200,
+        "retainer_min": 35000,
+        "retainer_max": 90000,
+        "rating": 4.7,
+        "notable_cases": [
+            {
+                "title": "Cryptocurrency fraud recovery",
+                "year": 2024,
+                "outcome": "Won",
+                "summary": "Assisted the Cyber Crime unit in tracing and freezing ₹85 lakhs stolen via a phishing scam targeting a local tech investor.",
+            }
+        ],
+    },
+    {
+        "name": "Neha Kapoor",
+        "city": "Pune",
+        "bar_registration": "MH/ADV/6644",
+        "email": "neha.kapoor@lexbridge.app",
+        "experience_years": 8,
+        "specialities": ["Labour Law", "Workplace Harassment", "Employment Disputes"],
+        "about": "Neha Kapoor represents corporate professionals and organizations in labor disputes. She is an expert on PoSH compliance and has guided over 50 POSH committees in conducting inquiries.",
+        "consultation_fee": 2000,
+        "retainer_min": 30000,
+        "retainer_max": 80000,
+        "rating": 4.8,
+        "notable_cases": [
+            {
+                "title": "Whistleblower retaliation defense",
+                "year": 2023,
+                "outcome": "Won",
+                "summary": "Successfully represented a senior executive in an employment tribunal, securing compensation and quashing a retaliatory termination.",
+            }
+        ],
+    },
+    {
+        "name": "Aditya Varma",
+        "city": "Delhi",
+        "bar_registration": "DL/ADV/5567",
+        "email": "aditya.varma@lexbridge.app",
+        "experience_years": 13,
+        "specialities": ["Consumer Disputes", "Product Liability", "E-Commerce Fraud"],
+        "about": "Aditya Varma is a senior consumer advocate who has successfully filed hundreds of complaints in the National and State Consumer Commissions. He works to ensure fair trade practices.",
+        "consultation_fee": 1700,
+        "retainer_min": 22000,
+        "retainer_max": 65000,
+        "rating": 4.5,
+        "notable_cases": [
+            {
+                "title": "Defective vehicle replacement ordered",
+                "year": 2024,
+                "outcome": "Won",
+                "summary": "Won a landmark judgment ordering a major automobile manufacturer to replace a defective vehicle and pay damages for mental harassment.",
+            }
+        ],
+    },
+    {
+        "name": "Shalini Joshi",
+        "city": "Mumbai",
+        "bar_registration": "MH/ADV/2211",
+        "email": "shalini.joshi@lexbridge.app",
+        "experience_years": 16,
+        "specialities": ["Property Law", "Inheritance Disputes", "Will Contestation"],
+        "about": "Shalini Joshi specializes in real estate and succession law, with extensive practice at the Bombay High Court. He helps families resolve probate disputes and execute wills legally.",
+        "consultation_fee": 2800,
+        "retainer_min": 45000,
+        "retainer_max": 130000,
+        "rating": 4.9,
+        "notable_cases": [
+            {
+                "title": "Probate of disputed family will",
+                "year": 2023,
+                "outcome": "Won",
+                "summary": "Successfully secured probate for a deceased NRI's will after proving the genuineness of signatures against claims of forgery.",
+            }
+        ],
+    },
+    {
+        "name": "Rajesh Singhania",
+        "city": "Bengaluru",
+        "bar_registration": "KA/ADV/9091",
+        "email": "rajesh.singhania@lexbridge.app",
+        "experience_years": 15,
+        "specialities": ["Corporate Law", "Venture Capital", "Startup Compliance"],
+        "about": "Rajesh Singhania advises high-growth startups and venture capital funds on capital raises, board management, and regulatory compliance. He has closed over 100 funding rounds.",
+        "consultation_fee": 3500,
+        "retainer_min": 60000,
+        "retainer_max": 180000,
+        "rating": 4.9,
+        "notable_cases": [
+            {
+                "title": "Series B venture funding closure",
+                "year": 2024,
+                "outcome": "Won",
+                "summary": "Led negotiations and drafted agreements for a ₹120 Crore Series B investment into a prominent fintech startup.",
+            }
+        ],
+    },
+    {
+        "name": "Pooja Hegde",
+        "city": "Hyderabad",
+        "bar_registration": "TS/ADV/4455",
+        "email": "pooja.hegde@lexbridge.app",
+        "experience_years": 9,
+        "specialities": ["Criminal Law", "Bail Applications", "Domestic Violence"],
+        "about": "Pooja Hegde is a dedicated criminal trial advocate practicing in the Hyderabad City Civil Courts. She specializes in domestic relations law, dowry harassment defense, and bail matters.",
+        "consultation_fee": 1600,
+        "retainer_min": 22000,
+        "retainer_max": 55000,
+        "rating": 4.6,
+        "notable_cases": [
+            {
+                "title": "Anticipatory bail in family dispute",
+                "year": 2024,
+                "outcome": "Won",
+                "summary": "Secured immediate anticipatory bail for three family members falsely accused under Section 498A IPC.",
+            }
+        ],
+    },
 ]
 
 if __name__ == "__main__":
-    response = supabase_service.table("lawyers").insert(lawyers).execute()
+    response = supabase_service.table("lawyers").upsert(lawyers, on_conflict="bar_registration").execute()
     print(f"Seeded {len(response.data)} lawyers successfully.")

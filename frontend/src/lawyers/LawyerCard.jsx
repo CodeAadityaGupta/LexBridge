@@ -1,62 +1,101 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Star, ShieldCheck } from 'lucide-react';
+import { Star, ShieldCheck, MapPin, ArrowRight, Briefcase } from 'lucide-react';
 import Avatar from '../UI/Avatar';
-import Badge from '../UI/Badge';
 
 export default function LawyerCard({ lawyer, isActive = false }) {
-  // Support both backend field names and legacy mock field names
   const id = lawyer.id;
   const name = lawyer.name;
-  // Backend: specialities (array); mock: specialty (string)
+  
   const primarySpecialty = lawyer.specialty
     || (lawyer.specialities && lawyer.specialities[0])
-    || '';
-  // Backend: consultation_fee (int in INR); mock: fee (formatted string)
+    || 'General Practice';
+    
+  const specialties = lawyer.specialities || [lawyer.specialty] || [];
+  
   const fee = lawyer.fee
-    || (lawyer.consultation_fee != null ? `₹${lawyer.consultation_fee.toLocaleString('en-IN')}` : '');
-  // Backend: experience_years; mock: experience
+    || (lawyer.consultation_fee != null ? `₹${lawyer.consultation_fee.toLocaleString('en-IN')}` : '₹1,000');
+    
   const experience = lawyer.experience ?? lawyer.experience_years;
-  // Backend: photo_url; mock: avatar
   const avatar = lawyer.avatar ?? lawyer.photo_url ?? null;
-  // Backend: rating (float)
-  const rating = lawyer.rating;
+  const rating = lawyer.rating || 4.5;
+  const city = lawyer.city || 'India';
 
   return (
-    <Link to={`/lawyer/${id}`} className="block select-none group">
+    <Link to={`/lawyer/${id}`} className="block select-none group h-full">
       <div
-        className={`flex flex-col justify-between p-6 rounded-2xl border transition-all duration-300 cursor-pointer h-full
+        className={`flex flex-col justify-between p-5 rounded-xl border transition-all duration-300 cursor-pointer h-full relative overflow-hidden
           ${isActive 
-            ? 'bg-accent-light border-accent/20 shadow-md' 
-            : 'bg-card border-border/60 hover:border-accent/30 hover:shadow-card hover:-translate-y-[2px] active:scale-[0.98] active:translate-y-0'
+            ? 'bg-accent-light/60 border-accent shadow-md' 
+            : 'bg-card border-border/80 hover:border-accent/40 hover:shadow-card hover:-translate-y-[2px] active:scale-[0.99]'
           }
         `}
       >
+        {/* Subtle top decoration line for hover */}
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent/40 via-accent to-accent-light transition-all duration-300 opacity-0 group-hover:opacity-100" />
+        
         <div className="space-y-4">
           <div className="flex items-start justify-between gap-3">
-            {/* Avatar */}
-            <Avatar name={name} src={avatar} size="md" className="border border-border/80 shadow-sm shrink-0" />
+            {/* Avatar & Verification Indicator */}
+            <div className="relative">
+              <Avatar name={name} src={avatar} size="md" className="border-2 border-border shadow-sm shrink-0" />
+              <div className="absolute -bottom-1 -right-1 bg-success text-white rounded-full p-0.5 border border-card shadow-sm">
+                <ShieldCheck className="w-3.5 h-3.5 fill-success text-white stroke-[2.5]" />
+              </div>
+            </div>
             
             {/* Rating badge */}
-            <div className="flex items-center space-x-1 text-[10px] text-ink font-bold bg-surface/80 px-2 py-0.5 rounded border border-border/50 shadow-sm shrink-0">
-              <Star className="w-3.5 h-3.5 fill-amber-500 stroke-amber-500" />
-              <span>{rating}</span>
+            <div className="flex items-center space-x-1 text-[11px] text-ink font-bold bg-surface/90 px-2.5 py-0.5 rounded-full border border-border/50 shadow-sm shrink-0">
+              <Star className="w-3 h-3 fill-amber-400 stroke-amber-500" />
+              <span>{Number(rating).toFixed(1)}</span>
             </div>
           </div>
 
-          <div className="space-y-1.5 min-w-0">
-            <h4 className="font-sans font-bold text-xs md:text-sm text-ink group-hover:text-accent transition-colors truncate">
-              {name}
-            </h4>
-            <p className="text-[10px] font-bold text-accent font-sans uppercase tracking-wider">
-              {primarySpecialty}
-            </p>
+          <div className="space-y-1">
+            <div className="flex items-center space-x-1.5">
+              <h4 className="font-sans font-bold text-sm md:text-base text-ink group-hover:text-accent transition-colors truncate">
+                {name}
+              </h4>
+            </div>
+            
+            {/* Primary specialty & City */}
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-semibold text-muted">
+              <span className="text-accent font-bold uppercase tracking-wider">{primarySpecialty}</span>
+              <span className="w-1 h-1 rounded-full bg-muted/40" />
+              <span className="flex items-center gap-0.5">
+                <MapPin className="w-3 h-3 text-muted/60" />
+                {city}
+              </span>
+            </div>
           </div>
+
+          {/* Sub-specialties tags */}
+          {specialties.length > 1 && (
+            <div className="flex flex-wrap gap-1 pt-1">
+              {specialties.slice(1, 3).map((spec, i) => (
+                <span 
+                  key={i} 
+                  className="px-2 py-0.5 rounded bg-surface border border-border/60 text-[9px] font-semibold text-muted/95 tracking-wide"
+                >
+                  {spec}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="border-t border-border/50 pt-4 mt-4 flex items-center justify-between text-[11px] text-muted font-sans font-semibold">
-          <span>{experience || '10+'} yrs exp</span>
-          <span className="text-ink font-bold">{fee}</span>
+        {/* Footer */}
+        <div className="border-t border-border/40 pt-3.5 mt-4 flex items-center justify-between text-[11px] text-muted font-sans font-semibold">
+          <div className="flex items-center gap-1">
+            <Briefcase className="w-3.5 h-3.5 text-muted/50" />
+            <span>{experience || '10+'} yrs exp</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-ink font-bold text-xs">{fee}</span>
+            <div className="w-6 h-6 rounded-full bg-accent-light flex items-center justify-center text-accent opacity-0 group-hover:opacity-100 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+              <ArrowRight className="w-3.5 h-3.5" />
+            </div>
+          </div>
         </div>
       </div>
     </Link>
